@@ -14,6 +14,6 @@ This repository is used by a team in Bogazici University for the course CMPE 352
 
 **Current Projects**
 
-[Know What You Eat](Project)
+[Know What You Eat](https://github.com/bounswe/bounswe2016group1/wiki)
 
 [See our wiki page](https://github.com/bounswe/bounswe2016group1/wiki)
