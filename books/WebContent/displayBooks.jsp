@@ -9,7 +9,12 @@
 <form action="writeData.jsp">
     
 <%
-out.println(Books.getData());
+
+String author=(String)request.getParameter("author");
+String genre=(String)request.getParameter("genre");
+String book=(String)request.getParameter("book");
+System.out.println(author+genre);
+out.println(Books.getData(author,genre,book));
 %>
     <input type="submit" value="Save" />
 
