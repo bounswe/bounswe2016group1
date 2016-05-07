@@ -33,6 +33,7 @@ public class MainServlet extends HttpServlet {
 	static final String DB_URL = "jdbc:mysql://localhost:3306/sakila";
 	Connection conn = null;
 	Statement stmt = null;
+	String sql = null;
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -43,7 +44,7 @@ public class MainServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	/*
+	/**
 	 * Create movies in local db assuming it does not exist
 	 */
 	public void createMoviesTable() {
@@ -60,8 +61,8 @@ public class MainServlet extends HttpServlet {
 			stmt = conn.createStatement();
 			String sql;
 			sql = "CREATE TABLE `movies` (  " + "`movie_id` int(10) unsigned NOT NULL AUTO_INCREMENT,  "
-					+ "`title` varchar(255) NOT NULL, " + "`score` varchar(50), " + "`publicationDate` int(10),  "
-					+ "`duration` int(10),  " + "`director`  varchar(50),  " + "`genre` varchar(50),  "
+					+ "`title` varchar(255) NOT NULL, " + "`publicationDate` int(10),  " + "`duration` int(10),  "
+					+ "`director`  varchar(50),  " + "`genre` varchar(50),  "
 					+ "`mainSubject` varchar(50), PRIMARY KEY (`movie_id`) ) "
 					+ "ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8;";
 			stmt.executeUpdate(sql);
@@ -95,8 +96,8 @@ public class MainServlet extends HttpServlet {
 	/*
 	 * Updates local movies table with the new information on wikidata.org
 	 */
-	public void insertIntoTable(String title, String score, String publicationDate, String duration, String director,
-			String genre, String mainSubject) {
+	public void insertIntoTable(String title, String publicationDate, String duration, String director, String genre,
+			String mainSubject) {
 		try {
 			// STEP 2: Register JDBC driver
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
@@ -109,10 +110,9 @@ public class MainServlet extends HttpServlet {
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
 			String sql;
-			sql = "INSERT INTO `sakila`.`movies`" + "`title`," + "`score`," + "`publicationDate`," + "`duration`,"
-					+ "`director`," + "`genre`," + "`mainSubject`)" + "VALUES ('" + title + "', '" + score + "', '"
-					+ publicationDate + "', '" + duration + "', '" + director + "', '" + genre + "', '" + mainSubject
-					+ "');";
+			sql = "INSERT INTO `sakila`.`movies`" + "`title`," + "`publicationDate`," + "`duration`,"
+					+ "`director`," + "`genre`," + "`mainSubject`)" + "VALUES ('" + title + "',  '" + publicationDate
+					+ "', '" + duration + "', '" + director + "', '" + genre + "', '" + mainSubject + "');";
 
 			stmt.executeUpdate(sql);
 
@@ -142,10 +142,7 @@ public class MainServlet extends HttpServlet {
 		} // end try
 	}
 
-	/*
-	 * creates experimental movies table in local db
-	 */
-	public void createSampleTable() {
+	public void connectToDB() {
 		try {
 			// STEP 2: Register JDBC driver
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
@@ -157,17 +154,45 @@ public class MainServlet extends HttpServlet {
 			// STEP 4: Execute a query
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
-			String sql;
-			sql = "INSERT INTO `sakila`.`movies`(" + "`title`," + "`score`," + "`publicationDate`," + "`duration`,"
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
+		} finally {
+			// finally block used to close resources
+			try {
+				if (stmt != null)
+					stmt.close();
+			} catch (SQLException se2) {
+			} // nothing we can do
+			try {
+				if (conn != null)
+					conn.close();
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		} // end try
+	}
+
+	/**
+	 * creates experimental movies table in local db
+	 */
+	public void createSampleTable() {
+
+		try {
+			sql = "INSERT INTO `sakila`.`movies`(" + "`title`," + "`publicationDate`," + "`duration`,"
 					+ "`director`," + "`genre`," + "`mainSubject`)" + "VALUES ('The Shawshank Redemption', '" + "9.2"
 					+ "', '" + "1994" + "', '" + "100" + "', '" + "alice" + "', '" + "asd" + "', '" + "prison" + "');";
 
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO `sakila`.`movies`(" + "`title`," + "`score`," + "`publicationDate`," + "`duration`,"
+
+			sql = "INSERT INTO `sakila`.`movies`(" + "`title`," + "`publicationDate`," + "`duration`,"
 					+ "`director`," + "`genre`," + "`mainSubject`)" + "VALUES ('" + "The Godfather" + "', '" + "9.2"
 					+ "', '" + "1972" + "', '" + "180" + "', '" + "bob" + "', '" + "asdasd" + "', '" + "mafia" + "');";
 			stmt.executeUpdate(sql);
-			sql = "INSERT INTO `sakila`.`movies`(" + "`title`," + "`score`," + "`publicationDate`," + "`duration`,"
+			sql = "INSERT INTO `sakila`.`movies`(" + "`title`," + "`publicationDate`," + "`duration`,"
 					+ "`director`," + "`genre`," + "`mainSubject`)" + "VALUES ('" + "The Dark Knight" + "', '" + "8.9"
 					+ "', '" + "2008" + "', '" + "110" + "', '" + "chris" + "', '" + "asdasd" + "', '" + "batman"
 					+ "');";
@@ -176,6 +201,91 @@ public class MainServlet extends HttpServlet {
 
 			stmt.close();
 			conn.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+	/*
+	 * Prints out movies table from the local db
+	 */
+	public void displayTable(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException, ClassNotFoundException {
+		try {
+			// STEP 2: Register JDBC driver
+			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
+
+			// STEP 3: Open a connection
+			System.out.println("Connecting to database...");
+			conn = DriverManager.getConnection(DB_URL, USER, PW);
+
+			// STEP 4: Execute a query
+			System.out.println("Creating statement...");
+			stmt = conn.createStatement();
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.println("<!DOCTYPE html>");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<title>Movies</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<table border=\"1\">");
+			try {
+
+				sql = "SELECT `movies`.`movie_id`," + "    `movies`.`title`," 
+						+ "    `movies`.`publicationDate`," + "    `movies`.`duration`," + "    `movies`.`director`,"
+						+ "    `movies`.`genre`," + "    `movies`.`mainSubject`" + "FROM `sakila`.`movies`;";
+				ResultSet rs = stmt.executeQuery(sql);
+				out.println("<tr>");
+				out.println("<td>movie_id</td>");
+				out.println("<td>title</td>");
+				out.println("<td>publicationDate</td>");
+				out.println("<td>duration</td>");
+				out.println("<td>director</td>");
+				out.println("<td>genre</td>");
+				out.println("<td>mainSubject</td>");
+				out.println("</tr>");
+				while (rs.next()) {
+					out.println("<tr>");
+					int movieId = rs.getInt("movie_id");
+					String title = rs.getString("title");
+					int publicationDate = rs.getInt("publicationDate");
+					int duration = rs.getInt("duration");
+					String director = rs.getString("director");
+					String genre = rs.getString("genre");
+					String mainSubject = rs.getString("mainSubject");
+					out.print("<td>" + movieId + "</td>");
+					out.print("<td>" + title + "</td>");
+					out.print("<td>" + publicationDate + "</td>");
+					out.print("<td>" + duration + "</td>");
+					out.print("<td>" + director + "</td>");
+					out.print("<td>" + genre + "</td>");
+					out.print("<td>" + mainSubject + "</td>");
+					out.println("</tr>");
+				}
+				out.println("</table>");
+				out.println("</body>");
+				out.println("</html>");
+			} catch (SQLException e) {
+				out.println("An error occured while retrieving " + "all employees: " + e.toString());
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (SQLException ex) {
+				}
+			}
+			out.println("</center>");
+			out.println("</body>");
+			out.println("</html>");
+			out.close();
 		} catch (SQLException se) {
 			// Handle errors for JDBC
 			se.printStackTrace();
@@ -196,23 +306,11 @@ public class MainServlet extends HttpServlet {
 				se.printStackTrace();
 			} // end finally try
 		} // end try
-	}
-	/*
-	 * Prints out movies table from the local db
-	 */
-	public void displayTable(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, ClassNotFoundException {
 
-		response.setContentType("text/html");
-		PrintWriter out = response.getWriter();
-		out.println("<!DOCTYPE html>");
-		out.println("<html>");
-		out.println("<head>");
-		out.println("<title>Movies</title>");
-		out.println("</head>");
-		out.println("<body>");
-		out.println("<table border=\"1\">");
-		Connection conn = null;
-		Statement stmt = null;
+	}
+
+	public void drawPage(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException, ClassNotFoundException {
 		try {
 			// STEP 2: Register JDBC driver
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
@@ -224,74 +322,117 @@ public class MainServlet extends HttpServlet {
 			// STEP 4: Execute a query
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
-			String sql;
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.println("<!DOCTYPE html>");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<title>Movies</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<form action=\"MainServlet\">");
+			out.println("<input type=\"button\" name=\"but1\" value=\"Movies that won Oscar\">");
+			out.println("</form>");
 
-			
-			String query = "SELECT `movies`.`movie_id`,"+
-					"    `movies`.`title`,"+
-					"    `movies`.`score`,"+
-					"    `movies`.`publicationDate`,"+
-					"    `movies`.`duration`,"+
-					"    `movies`.`director`,"+
-					"    `movies`.`genre`,"+
-					"    `movies`.`mainSubject`"+
-					"FROM `sakila`.`movies`;";
-			ResultSet rs = stmt.executeQuery(query);
-			out.println("<tr>");
-			out.println("<td>movie_id</td>");
-			out.println("<td>title</td>");
-			out.println("<td>score</td>");
-			out.println("<td>publicationDate</td>");
-			out.println("<td>duration</td>");
-			out.println("<td>director</td>");
-			out.println("<td>genre</td>");
-			out.println("<td>mainSubject</td>");
-			out.println("</tr>");
-			while (rs.next()) {
+			out.println("<form action=\"CastMembers\">");
+			out.println("<input type=\"button\" name=\"but2\" value=\"Cast members played in selected Movies\">");
+			out.println("</form>");
+
+			out.println("<form action=\"ShowEntries\">");
+			out.println("<input type=\"button\" name=\"but3\" value=\"Show stored entries\">");
+			out.println("</form>");
+
+			out.println("<form action=\"SaveEntries\" method=\"POST\" id=\"my_form\">");
+			out.println("<table border=\"1\">");
+			try {
+
+				sql = "SELECT `movies`.`movie_id`," + "    `movies`.`title`," + "    `movies`.`publicationDate`,"
+						+ "    `movies`.`duration`," + "    `movies`.`director`," + "    `movies`.`genre`,"
+						+ "    `movies`.`mainSubject`" + "FROM `sakila`.`movies`;";
+				ResultSet rs = stmt.executeQuery(sql);
 				out.println("<tr>");
-				int movieId = rs.getInt("movie_id");
-				String title = rs.getString("title");
-				String score = rs.getString("score");
-				int publicationDate = rs.getInt("publicationDate");
-				int duration = rs.getInt("duration");
-				String director = rs.getString("director");
-				String genre = rs.getString("genre");
-				String mainSubject = rs.getString("mainSubject");
-				out.print("<td>" + movieId + "</td>");
-				out.print("<td>" + title + "</td>");
-				out.print("<td>" + score + "</td>");
-				out.print("<td>" + publicationDate + "</td>");
-				out.print("<td>" + duration + "</td>");
-				out.print("<td>" + director + "</td>");
-				out.print("<td>" + genre + "</td>");
-				out.print("<td>" + mainSubject + "</td>");
+				out.println("<td>store?</td>");
+				out.println("<td>movie_id</td>");
+				out.println("<td>title</td>");
+				out.println("<td>publicationDate</td>");
+				out.println("<td>duration</td>");
+				out.println("<td>director</td>");
+				out.println("<td>genre</td>");
+				out.println("<td>mainSubject</td>");
 				out.println("</tr>");
+				int rowIndex = 0;
+				while (rs.next()) {
+					out.println("<tr>");
+					int movieId = rs.getInt("movie_id");
+					String title = rs.getString("title");
+					int publicationDate = rs.getInt("publicationDate");
+					int duration = rs.getInt("duration");
+					String director = rs.getString("director");
+					String genre = rs.getString("genre");
+					String mainSubject = rs.getString("mainSubject");
+					rowIndex++;
+					out.print("<td>" + "<input type=\"checkbox\" name=\"" + Integer.toString(rowIndex)
+							+ "\" form=\"my_form\"></td>");
+					out.print("<td><input type=\"text\" name=\"id" + Integer.toString(rowIndex)
+							+ "\" readonly=\"yes\"  value=\"" + movieId + "\" </td>");
+
+					out.print("<td>" + title + "</td>");
+					out.print("<td>" + publicationDate + "</td>");
+					out.print("<td>" + duration + "</td>");
+					out.print("<td>" + director + "</td>");
+					out.print("<td>" + genre + "</td>");
+					out.print("<td>" + mainSubject + "</td>");
+					out.println("</tr>");
+				}
+
+				out.println("</table>");
+				out.println("<input type=\"submit\" name=\"but4\" value=\"Store checked entries\">");
+				out.println("</form>");
+				out.println("</body>");
+				out.println("</html>");
+			} catch (SQLException e) {
+				out.println("An error occured while retrieving " + e.toString());
+			} finally {
+				try {
+					if (stmt != null) {
+						stmt.close();
+					}
+					if (conn != null) {
+						conn.close();
+					}
+				} catch (SQLException ex) {
+				}
 			}
-			out.println("</table>");
+			out.println("</center>");
 			out.println("</body>");
 			out.println("</html>");
-		} catch (SQLException e) {
-			out.println("An error occured while retrieving " + "all employees: " + e.toString());
+			out.close();
+		} catch (SQLException se) {
+			// Handle errors for JDBC
+			se.printStackTrace();
+		} catch (Exception e) {
+			// Handle errors for Class.forName
+			e.printStackTrace();
 		} finally {
+			// finally block used to close resources
 			try {
-				if (stmt != null) {
+				if (stmt != null)
 					stmt.close();
-				}
-				if (conn != null) {
+			} catch (SQLException se2) {
+			} // nothing we can do
+			try {
+				if (conn != null)
 					conn.close();
-				}
-			} catch (SQLException ex) {
-			}
-		}
-		out.println("</center>");
-		out.println("</body>");
-		out.println("</html>");
-		out.close();
-	
+			} catch (SQLException se) {
+				se.printStackTrace();
+			} // end finally try
+		} // end try
 
 	}
+
 	/*
-	 * Queries the wikidata.org to get up-to-date information and stores it in local db
+	 * Queries the wikidata.org to get up-to-date information and stores it in
+	 * local db
 	 */
 	public void updateMoviesTable() {
 		String queryString = "PREFIX bd: <http://www.bigdata.com/rdf#>"
@@ -341,11 +482,16 @@ public class MainServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		try {
-			displayTable(request, response);
+			drawPage(request, response);
 		} catch (ClassNotFoundException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+
 	}
 
 }
