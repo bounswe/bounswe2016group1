@@ -34,6 +34,7 @@ public class ShowEntries extends HttpServlet {
 	 */
 	public ShowEntries() {
 		super();
+
 		// TODO Auto-generated constructor stub
 	}
 
@@ -45,16 +46,9 @@ public class ShowEntries extends HttpServlet {
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		try {
-			// STEP 2: Register JDBC driver
-			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
-			// STEP 3: Open a connection
-			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PW);
-
-			// STEP 4: Execute a query
-			System.out.println("Creating statement...");
-			stmt = conn.createStatement();
-			
+			MainServlet.connectToDB();
+			conn = MainServlet.conn;
+			stmt = MainServlet.stmt;
 			response.setContentType("text/html");
 			PrintWriter out = response.getWriter();
 			out.println("<!DOCTYPE html>");
@@ -65,15 +59,15 @@ public class ShowEntries extends HttpServlet {
 			out.println("<body>");
 			out.println("<table border=\"1\">");
 			
-			String sql = "SELECT `entries`.`movie_id` FROM `sakila`.`entries`";
+			String sql = "SELECT `entries`.`genreID` FROM `sakila`.`entries`";
 
 			stmt.executeQuery(sql);
 			ResultSet rs = stmt.executeQuery(sql);
 			while (rs.next()) {
 				out.println("<tr>");
-				int movieId = rs.getInt("movie_id");
+				String genreID = rs.getString("genreID");
 
-				out.print("<td>" + movieId + "</td>");
+				out.print("<td>" + genreID + "</td>");
 	
 				out.println("</tr>");
 			}

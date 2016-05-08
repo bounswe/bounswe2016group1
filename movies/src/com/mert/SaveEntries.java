@@ -1,8 +1,10 @@
 package com.mert;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
@@ -26,12 +28,12 @@ public class SaveEntries extends HttpServlet {
 	Statement stmt = null;
 	String sql = null;
 	private static final long serialVersionUID = 1L;
+	public static final int MYSQL_DUPLICATE_PK = 1062;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public SaveEntries() {
-		super();
 		// TODO Auto-generated constructor stub
 	}
 
@@ -42,7 +44,7 @@ public class SaveEntries extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+
 	}
 
 	/**
@@ -51,50 +53,57 @@ public class SaveEntries extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		MainServlet.connectToDB();
+		conn = MainServlet.conn;
+		stmt = MainServlet.stmt;
+		response.setContentType("text/html");
+		PrintWriter out = response.getWriter();
+		out.println("<!DOCTYPE html>");
+		out.println("<html>");
+		out.println("<head>");
+		out.println("<title>Movies</title>");
+		out.println("</head>");
+		out.println("<body>");
+
 		try {
-			// STEP 2: Register JDBC driver
-			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
-			// STEP 3: Open a connection
-			System.out.println("Connecting to database...");
-			conn = DriverManager.getConnection(DB_URL, USER, PW);
-
-			// STEP 4: Execute a query
-			System.out.println("Creating statement...");
-			stmt = conn.createStatement();
-			for (int i = 1; i < 3; i++) {
-				if (request.getParameter(Integer.toString(i)) != null) {
-
-					String sql = "INSERT INTO `sakila`.`entries` (`movieID`) VALUES("
-							+ request.getParameter("id" + Integer.toString(i)) + ")";
-
-					stmt.executeUpdate(sql);
+			String[] IDs = request.getParameterValues("boxes");
+			if (IDs != null) {
+				for (int i = 0; i < IDs.length; i++) {
+					try {
+						sql = "INSERT INTO `sakila`.`entries` (`genreID`) VALUES(\"" + IDs[i] + "\")";
+						stmt.executeUpdate(sql);
+					} catch (SQLException e) {
+						if (e.getErrorCode() == MYSQL_DUPLICATE_PK) {
+							out.println(IDs[i] + " already exists, continuing");
+							continue;
+						}
+					}
 				}
+			} else {
+				out.println("No checkbox selected");
+				out.println("</body>");
+				out.println("</html>");
 			}
-			stmt.close();
-			conn.close();
 
-		} catch (SQLException se) {
-			// Handle errors for JDBC
-			se.printStackTrace();
+			MainServlet.connectToDB();
+
+			String sql = "SELECT `entries`.`genreID` FROM `sakila`.`entries`";
+
+			out.println("<table border=\"1\">");
+			ResultSet rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				out.println("<tr>");
+				String genreID = rs.getString("genreID");
+				out.print("<td>" + genreID + "</td>");
+				out.println("</tr>");
+			}
+			out.println("</table>");
+			out.println("</body>");
+			out.println("</html>");
 		} catch (Exception e) {
-			// Handle errors for Class.forName
-			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			} // end finally try
-		} // end try
 
+		}
 	}
 
 }
