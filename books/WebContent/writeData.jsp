@@ -4,6 +4,6 @@
 <% 
 
 String select[]=request.getParameterValues("id");
-Books.writeData(select);
+Books.saveData(select);
 
 %>
