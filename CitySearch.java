@@ -18,23 +18,51 @@ import org.w3c.dom.NodeList;
 import java.nio.charset.Charset;
 import java.sql.*;
 
+/**
+ * @brief Servlet for a website on city search.
+ * 
+ *        This servlet creates a webpage where you can search cities by name,
+ *        country and population. It also allows results to be saved to a
+ *        database.
+ * 
+ * @version 1.0
+ * @author Kaan Bulut Tekelioglu
+ * @date May 2016
+ */
 public class CitySearch extends HttpServlet {
 
-	public String[] categories = { "cityLabel", "countryLabel", "population" };
-	public String[] links = { "city", "country", "" };
-	public static final int MENU_PAGES = 9;
-	public static final int ENTRIES_PER_PAGE = 10;
+	private String[] categories = { "cityLabel", "countryLabel", "population" };
+	/** <Categories used in the query. */
+	private String[] links = { "city", "country", "" };
+	/** <Links of each category of the query. */
+	private static final int MENU_PAGES = 9;
+	/** <Number of consecutive pages to be displayed in menu. */
+	private static final int ENTRIES_PER_PAGE = 10;
+	/** <Number of result entries per page. */
 
-	static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-	static final String DB_URL = "jdbc:mysql://localhost:3306/sys";
-	static final String TABLE_NAME = "cities";
+	private static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+	/** <Driver for MySQL Connections. */
+	private static final String DB_URL = "jdbc:mysql://localhost:3306/sys";
+	/** <Database URL. */
+	private static final String TABLE_NAME = "cities";
+	/** <Database table name. */
 
-	
-	static final String USER = "root";
-	static final String PASS = "1234";
+	private static final String USER = "root";
+	/** <Database username. */
+	private static final String PASS = "1234";
+	/** <Database password. */
 
-	Connection conn;
+	private Connection conn;/** <Database connection. */
 
+	/**
+	 * Runs a given query in wikidata. The query must be valid. Returns an
+	 * ArrayList of Hashmaps, where each row is a result, and column names are
+	 * keys to the maps.
+	 * 
+	 * @param query
+	 *            - The query to be run.
+	 * @return The result list.
+	 */
 	private ArrayList<HashMap<String, String>> runQuery(String query) {
 		ArrayList<HashMap<String, String>> rows = new ArrayList<HashMap<String, String>>();
 		String xmlFile = "";
@@ -75,6 +103,14 @@ public class CitySearch extends HttpServlet {
 		return rows;
 	}
 
+	/**
+	 * Runs the body of the data extraction query for city search. It does
+	 * filtering in the query according to parameters in request.
+	 * 
+	 * @param request
+	 *            - The HTTP request.
+	 * @return The body of the query.
+	 */
 	private String getQueryBody(HttpServletRequest request) {
 		String queryBody = "";
 		queryBody += "?city wdt:P31 wd:Q515.";
@@ -95,6 +131,14 @@ public class CitySearch extends HttpServlet {
 		return queryBody;
 	}
 
+	/**
+	 * Runs the query for data extraction. It sorts and pages data according to
+	 * parameters.
+	 * 
+	 * @param request
+	 *            - The HTTP request.
+	 * @return The result list for the data query.
+	 */
 	private ArrayList<HashMap<String, String>> runDataQuery(HttpServletRequest request) {
 		ArrayList<HashMap<String, String>> rows = new ArrayList<HashMap<String, String>>();
 
@@ -117,7 +161,14 @@ public class CitySearch extends HttpServlet {
 		return runQuery(query);
 	}
 
-	public String getOptions(HttpServletRequest request) {
+	/**
+	 * Creates the HTML code for a dropdown menu for sort selection.
+	 * 
+	 * @param request
+	 *            - The HTTP request.
+	 * @return The HTML code for the dropdown menu.
+	 */
+	private String getOptions(HttpServletRequest request) {
 		String optionCode = "";
 		optionCode += "<select name=\"sort\">";
 		String sortValue = request.getParameter("sort") == null ? "" : request.getParameter("sort");
@@ -130,7 +181,14 @@ public class CitySearch extends HttpServlet {
 		return optionCode;
 	}
 
-	public String getTable(HttpServletRequest request) {
+	/**
+	 * Creates the HTML code for the results table.
+	 * 
+	 * @param request
+	 *            - The HTTP request.
+	 * @return The HTML code for the results table.
+	 */
+	private String getTable(HttpServletRequest request) {
 		String ret = "";
 		ArrayList<HashMap<String, String>> rows = runDataQuery(request);
 
@@ -163,7 +221,14 @@ public class CitySearch extends HttpServlet {
 		return ret;
 	}
 
-	public String getPageMenu(HttpServletRequest request) {
+	/**
+	 * Creates the HTML code for a table to select pages of the query result.
+	 * 
+	 * @param request
+	 *            - The HTTP request.
+	 * @return The HTML code for a table to select pages.
+	 */
+	private String getPageMenu(HttpServletRequest request) {
 		int pageNumber = 1;
 
 		try {
@@ -207,7 +272,14 @@ public class CitySearch extends HttpServlet {
 		return menuCode;
 	}
 
-	public String generateHTML(HttpServletRequest request) {
+	/**
+	 * Generates the HTML code for the entire page.
+	 * 
+	 * @param request
+	 *            - The HTTP request.
+	 * @return The HTML code the entire page.
+	 */
+	private String generateHTML(HttpServletRequest request) {
 		String html = "";
 		html += "<html>";
 		html += "<head><title>Search Cities</title></head>";
@@ -244,13 +316,26 @@ public class CitySearch extends HttpServlet {
 		return html;
 	}
 
+	/**
+	 * Initializes the database connection.
+	 */
 	public void init() throws ServletException {
-		try{
+		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(DB_URL, USER, PASS);
-		}catch(Exception e){System.out.println("Failed DB connection" + e.getMessage());}
+		} catch (Exception e) {
+			System.out.println("Failed DB connection" + e.getMessage());
+		}
 	}
 
+	/**
+	 * Prints the HTML code when a GET request is made.
+	 * 
+	 * @param request
+	 *            - The HTTP request.
+	 * @param response
+	 *            - The HTTP response of this servlet.
+	 */
 	public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
@@ -258,6 +343,14 @@ public class CitySearch extends HttpServlet {
 		out.println(generateHTML(request));
 	}
 
+	/**
+	 * Writes URLs to database when a POST request is made.
+	 * 
+	 * @param request
+	 *            - The HTTP request.
+	 * @param response
+	 *            - The HTTP response of this servlet.
+	 */
 	public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/html");
 
@@ -273,19 +366,26 @@ public class CitySearch extends HttpServlet {
 			String paramName = (String) paramNames.nextElement();
 			String paramValue = request.getParameter(paramName);
 			out.println("<tr><td>" + paramValue + "</td></tr>");
-			try{
+			try {
 				Statement stmt = conn.createStatement();
-				String sql = "INSERT INTO "+TABLE_NAME+" VALUES (\""+paramValue+"\");";
+				String sql = "INSERT INTO " + TABLE_NAME + " VALUES (\"" + paramValue + "\");";
 				stmt.executeUpdate(sql);
 				stmt.close();
-			}catch(Exception e){System.out.println("Failed Query" + e.getMessage());}
+			} catch (Exception e) {
+				System.out.println("Failed Query" + e.getMessage());
+			}
 		}
 		out.println("</table></body></html>");
 	}
 
+	/**
+	 * Disconnects from the database when the servlet is destroyed.
+	 */
 	public void destroy() {
-		try{
+		try {
 			conn.close();
-		}catch(Exception e){System.out.println("Failed Destroy");}
+		} catch (Exception e) {
+			System.out.println("Failed Destroy");
+		}
 	}
 }
