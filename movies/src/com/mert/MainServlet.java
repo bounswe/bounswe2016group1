@@ -1,14 +1,14 @@
 package com.mert;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Iterator;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -21,6 +21,7 @@ import org.apache.jena.query.QueryExecution;
 import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
+import org.apache.jena.query.ResultSetFormatter;
 
 /**
  * Servlet implementation class MainServlet
@@ -32,8 +33,9 @@ public class MainServlet extends HttpServlet {
 	// static final String DB_URL =
 	// "jdbc:mysql://ec2-54-191-203-200.us-west-2.compute.amazonaws.com:3306/devs";
 	static final String DB_URL = "jdbc:mysql://localhost:3306/sakila";
-	Connection conn = null;
-	Statement stmt = null;
+	static Connection conn = null;
+	static Statement stmt = null;
+	static String sql = null;
 	private static final long serialVersionUID = 1L;
 
 	/**
@@ -44,11 +46,39 @@ public class MainServlet extends HttpServlet {
 		// TODO Auto-generated constructor stub
 	}
 
-	/*
+	/**
 	 * Create movies in local db assuming it does not exist
 	 */
 	public void createMoviesTable() {
+
+		connectToDB();
+		sql = "CREATE TABLE `movies` (  " + "`movie_id` int(10) unsigned NOT NULL AUTO_INCREMENT,  "
+				+ "`title` varchar(255) NOT NULL, " + "`publicationDate` int(10),  " + "`duration` int(10),  "
+				+ "`director`  varchar(50),  " + "`genre` varchar(50),  "
+				+ "`mainSubject` varchar(50), PRIMARY KEY (`movie_id`) ) "
+				+ "ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8;";
 		try {
+			stmt.executeUpdate(sql);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
+	}
+
+
+
+	public static boolean connectToDB() {
+		if (conn!=null)
+			try {
+				if(conn.isValid(0))
+					return true;
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		try {
+
 			// STEP 2: Register JDBC driver
 			DriverManager.registerDriver(new com.mysql.jdbc.Driver());
 
@@ -59,61 +89,84 @@ public class MainServlet extends HttpServlet {
 			// STEP 4: Execute a query
 			System.out.println("Creating statement...");
 			stmt = conn.createStatement();
-			String sql;
-			sql = "CREATE TABLE `movies` (  `movie_id` int(10) unsigned NOT NULL AUTO_INCREMENT,  `title` varchar(255) NOT NULL, `score` varchar(50), `publicationDate` int(10),  `duration` int(10),  `instanceOf`   varchar(255),  `director`  varchar(50),  `castMember` varchar(50),  `producer` varchar(50),  `productionCompany` varchar(50),  `genre` varchar(50),  `mainSubject` varchar(50),  `awardReceived` varchar(50),  PRIMARY KEY (`movie_id`) ) ENGINE=InnoDB AUTO_INCREMENT=1001 DEFAULT CHARSET=utf8;";
-			stmt.executeUpdate(sql);
-
-			// STEP 6: Clean-up environment
-
-			stmt.close();
-			conn.close();
 		} catch (SQLException se) {
 			// Handle errors for JDBC
 			se.printStackTrace();
+			return false;
 		} catch (Exception e) {
 			// Handle errors for Class.forName
 			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			} // end finally try
-		} // end try
+			return false;
+		}
+		return true;
 	}
 
-	/*
-	 * Updates local movies table with the new information on wikidata.org
-	 */
-	public void updateMoviesTable() {
-		String queryString = "";
-		try {
-			Query query = QueryFactory.create(queryString);
+	public void drawPage(HttpServletRequest request, HttpServletResponse response)
+			throws IOException, ServletException, ClassNotFoundException {
+			
+			response.setContentType("text/html");
+			PrintWriter out = response.getWriter();
+			out.println("<!DOCTYPE html>");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<title>Movies</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("<form action=\"MainServlet\">");
+			out.println(
+					"<input type=\"submit\" name=\"but1\" method=\"POST\" id=\"f1\" value=\"Movie main subjects that earned most Oscars\">");
+			out.println("</form>");
+			out.println("<form action=\"UpdateDB\">");
+			out.println("<input type=\"submit\" name=\"but1\" method=\"POST\" id=\"f1\" value=\"Update local DB\">");
+			out.println("</form>");
+			out.println("<form action=\"ShowMovies\">");
+			out.println(
+					"<input type=\"submit\" name=\"but2\" method=\"POST\" id=\"f2\" value=\"Show Movies that won oscar on saved topics\">");
+			out.println("</form>");
 
-			// Execute the query and obtain results
-			QueryExecution qe = QueryExecutionFactory.sparqlService("https://query.wikidata.org/sparql", query);
-			org.apache.jena.query.ResultSet results = qe.execSelect();
+			out.println("<form action=\"ShowEntries\">");
+			out.println("<input type=\"submit\" name=\"but3\" method=\"POST\" id=\"f3\"value=\"Show stored entries\">");
+			out.println("</form>");
 
-			while (results.hasNext()) {
-				Map<String, String> columns = new HashMap<String, String>();
-				QuerySolution querySolution = results.next();
+			out.println("<form action=\"SaveEntries\" method=\"POST\" id=\"my_form\">");
+			out.println("<input type=\"submit\" name=\"but4\" value=\"Store checked entries\">");
+			out.println("<table border=\"1\">");
+			try {
+				connectToDB();
+				sql = "SELECT `movies`.`genre`, `movies`.`genreID`, `movies`.`count` FROM `sakila`.`movies` ORDER BY `count` DESC;";
+				ResultSet rs = stmt.executeQuery(sql);
+				out.println("<tr>");
+				out.println("<td>store?</td>");
+				out.println("<td>subjectID</td>");
+				out.println("<td>Main Subject</td>");
+				out.println("<td>count</td>");
+				out.println("</tr>");
+					while (rs.next()) {
+						out.println("<tr>");
+						String genre = rs.getString("genre");
+						int count = rs.getInt("count");
+						String ID = rs.getString("genreID");
+						out.print("<td>" + "<input type=\"checkbox\" name=\"boxes\" value=\"" + ID
+								+ "\" form=\"my_form\"></td>");
+						out.print("<td>" + ID + "</td>");
+						out.print("<td>" + genre + "</td>");
+						out.print("<td>" + count + "</td>");
+						out.println("</tr>");
+					}
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 
-				String booklabel = querySolution.get("bookLabel").toString();
-
-				System.out.println(querySolution);
-
-			}
-
-		} catch (Exception e) {
-
-		}
+			out.println("</table>");
+			out.println("</form>");
+			out.println("</body>");
+			out.println("</html>");
+			out.println("</center>");
+			out.println("</body>");
+			out.println("</html>");
+			out.close();
+		
 
 	}
 
@@ -123,7 +176,16 @@ public class MainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		updateMoviesTable();
+		try {
+			drawPage(request, response);
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 
 	}
 
