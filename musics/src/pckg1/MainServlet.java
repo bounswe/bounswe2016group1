@@ -40,6 +40,15 @@ public class MainServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
+    public void run() throws ClassNotFoundException, SQLException{
+    	if( pckg1.functions.connect()){
+    		functions.search("*", "table1");
+			
+			while(result.next()){
+				System.out.println(result.getString(1)+" "+result.getString(2));
+			}
+    	}
+    }
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,24 +57,19 @@ public class MainServlet extends HttpServlet {
 		PrintWriter pw = response.getWriter();
 		
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(url, user, pass);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
-		
-		if(conn != null){
-			try {
-				query = "SELECT * FROM table1";
-				statement = conn.prepareStatement(query);
-				result = statement.executeQuery();
-				
-				while(result.next()){
-					System.out.println(result.getString(1)+" "+result.getString(2));
-				}
-				
-			} catch (SQLException e) {e.printStackTrace();}
-		}
+			if( pckg1.functions.connect()){
+				try {
+					query = "SELECT * FROM table1";
+					statement = conn.prepareStatement(query);
+					result = statement.executeQuery();
+					
+					while(result.next()){
+						System.out.println(result.getString(1)+" "+result.getString(2));
+					}
+					
+				} catch (SQLException e) {e.printStackTrace();}
+			}
+		} catch (Exception e) {}
 	}
 
 	/**
