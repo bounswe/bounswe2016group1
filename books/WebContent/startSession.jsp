@@ -7,19 +7,15 @@
 <%@page import="org.apache.jena.query.QuerySolution" %>
 <%@page import="org.apache.jena.query.ResultSet" %>
 
-<form action="writeData.jsp">
+<form action="seeData.htm">
     
 <%
 
-String author=(String)request.getParameter("author");
-String genre=(String)request.getParameter("genre");
-String book=(String)request.getParameter("book");
-String series=(String)request.getParameter("series");
-out.println(Books.getData(author,genre,book,series));
+String user=(String)request.getParameter("user");
+session.setAttribute("user",user); 
+String redirectURL = "input.jsp"; 
+response.sendRedirect(redirectURL); 
 %>
-    <input type="submit" value="Save" />
 
 
 </form>
-
-

@@ -1,6 +1,5 @@
 package books;
 
-import java.sql.DriverManager;
 import java.util.*;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
@@ -191,7 +190,7 @@ public class Books {
 		 * @param list   Data to be filtered.
 		 * @return       Filtered data.
 		 */
-		private static ArrayList<Map<String,String>> filter(String c_name,String c_value,ArrayList<Map<String,String>> list){
+		public static ArrayList<Map<String,String>> filter(String c_name,String c_value,ArrayList<Map<String,String>> list){
 			
 			//If the user does not specify do not filter.
 			if(c_value.equals("")){
@@ -223,21 +222,21 @@ public class Books {
 			
 	}
 		
-		public static void saveData(String select[]){
-		
+		public static String saveData(String select[],String user_name){
+		    int success=0;
 			for(int i=0;i<rows.size();i++){
 				for(int j=0;j<select.length;j++){
 					if(Integer.parseInt(select[j])==i){
-						DB.add(rows.get(i).get("book"), rows.get(i).get("author"), rows.get(i).get("date"), rows.get(i).get("series"));
+						DB.add(user_name,rows.get(i).get("book"), rows.get(i).get("author"), rows.get(i).get("date"), rows.get(i).get("series"),rows.get(i).get("genre"));
+						success=1;
 						//Write to database.
 						break;
 					}	
 				
 				}
 			}
-			
+			return DB.printAll(user_name);
 			
 		}
-		
 
 }
