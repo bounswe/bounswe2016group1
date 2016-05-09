@@ -2,6 +2,9 @@ package pckg1;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,7 +18,21 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	
+	
+//	Connection conn = null;
+//	String url = "jdbc:mysql://localhost:3306/test";
+//	String user = "root";
+//	String pass = "12345678";
+//	try {
+//		conn = DriverManager.getConnection(url, user, pass);
+//		System.out.println("Yeap!");
+//	} catch (SQLException e) {
+//		// TODO Auto-generated catch block
+//		e.printStackTrace();
+//	}   
+	
+	
     /**
      * @see HttpServlet#HttpServlet()
      */
