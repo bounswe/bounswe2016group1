@@ -19,7 +19,8 @@ import javax.servlet.http.HttpServletResponse;
 public class MainServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	
+
+//  -----
 //	Connection conn = null;
 //	String url = "jdbc:mysql://localhost:3306/test";
 //	String user = "root";
