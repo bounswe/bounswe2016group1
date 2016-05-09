@@ -1,5 +1,6 @@
 package books;
 
+import java.sql.DriverManager;
 import java.util.*;
 import org.apache.jena.query.Query;
 import org.apache.jena.query.QueryExecution;
@@ -29,9 +30,10 @@ public class Books {
 		 * @param _author    Author Name of the book.
 		 * @param _genre     Genre of the book.
 		 * @param _book      Name of the book.
+		 * @param _series    Series of the book.
 		 * @return           Data in html format.
 		 */
-		public static String getData(String _author,String _genre,String _book){
+		public static String getData(String _author,String _genre,String _book,String _series){
 			
 			//Convert the author name into suitable format.
 		
@@ -145,8 +147,11 @@ public class Books {
 		        	
 		        	//Filter the table according to genre.
 		        	rows=filter("genre",_genre,rows);
+
 		        	
-		        		
+		        	//Filter the table according to series.
+		        	rows=filter("series",_series,rows);
+	
 		        	//Create html table from the data.
 		        	String result="";
 		        	result+="<table>";
@@ -218,12 +223,12 @@ public class Books {
 			
 	}
 		
-		public static void writeData(String select[]){
+		public static void saveData(String select[]){
 		
 			for(int i=0;i<rows.size();i++){
 				for(int j=0;j<select.length;j++){
 					if(Integer.parseInt(select[j])==i){
-						System.out.println(rows.get(i).get("book"));
+						DB.add(rows.get(i).get("book"), rows.get(i).get("author"), rows.get(i).get("date"), rows.get(i).get("series"));
 						//Write to database.
 						break;
 					}	

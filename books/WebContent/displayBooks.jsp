@@ -13,8 +13,8 @@
 String author=(String)request.getParameter("author");
 String genre=(String)request.getParameter("genre");
 String book=(String)request.getParameter("book");
-System.out.println(author+genre);
-out.println(Books.getData(author,genre,book));
+String series=(String)request.getParameter("series");
+out.println(Books.getData(author,genre,book,series));
 %>
     <input type="submit" value="Save" />
 
