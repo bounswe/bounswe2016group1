@@ -24,7 +24,8 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSetFormatter;
 
 /**
- * Servlet implementation class MainServlet
+ * @author Mert
+ * Landing page of this web app
  */
 @WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {
@@ -67,7 +68,12 @@ public class MainServlet extends HttpServlet {
 	}
 
 
-
+/**
+ * Handles all of the sql connections, it is static and is used by other classes too
+ *  
+ * @return true if a connection already existed or just established
+ * @return false if connection could not be established
+ */
 	public static boolean connectToDB() {
 		if (conn!=null)
 			try {
@@ -100,7 +106,14 @@ public class MainServlet extends HttpServlet {
 		}
 		return true;
 	}
-
+/**
+ * Prints out all the html contents on main page such as buttons and search
+ * @param request
+ * @param response
+ * @throws IOException
+ * @throws ServletException
+ * @throws ClassNotFoundException
+ */
 	public void drawPage(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException, ClassNotFoundException {
 			
@@ -123,14 +136,9 @@ public class MainServlet extends HttpServlet {
 			out.println(
 					"<input type=\"submit\" name=\"but2\" method=\"POST\" id=\"f2\" value=\"Show Movies that won oscar on saved topics\">");
 			out.println("</form>");
-
 			out.println("<form action=\"ShowEntries\">");
 			out.println("<input type=\"submit\" name=\"but3\" method=\"POST\" id=\"f3\"value=\"Show stored entries\">");
 			out.println("</form>");
-
-
-			
-			out.println("<table border=\"1\">");
 			out.println("<form method=\"post\" name=\"frm\" action=\"Search\">");
 			out.println("<table border=\"0\" width=\"430\">");
 			out.println("<tr><td colspan=2 style=\"font-size:12pt;\" align=\"right\">");
@@ -182,6 +190,8 @@ public class MainServlet extends HttpServlet {
 	}
 
 	/**
+	 * This function acts as main and is executed when page is requested.
+	 * 
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */

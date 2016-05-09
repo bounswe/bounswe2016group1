@@ -1,0 +1,117 @@
+\hypertarget{classcom_1_1mert_1_1_update_d_b}{}\section{com.\+mert.\+Update\+DB Class Reference}
+\label{classcom_1_1mert_1_1_update_d_b}\index{com.\+mert.\+Update\+DB@{com.\+mert.\+Update\+DB}}
+Inheritance diagram for com.\+mert.\+Update\+DB\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcom_1_1mert_1_1_update_d_b}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+int \hyperlink{classcom_1_1mert_1_1_update_d_b_abdd8ebc75cea7ddd5ec0e5209fe33aab}{parse\+Count} (String s)
+\item 
+String \hyperlink{classcom_1_1mert_1_1_update_d_b_abb3f580bac381c22f673cb8ea31cd98c}{parse\+Link} (String s)
+\item 
+void \hyperlink{classcom_1_1mert_1_1_update_d_b_ac0ad352f8b973b5d27acd72ad42f9028}{truncate\+DB} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static String \hyperlink{classcom_1_1mert_1_1_update_d_b_a318392aaae286a267a142550bdd78ca0}{parse\+Genre} (String s)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classcom_1_1mert_1_1_update_d_b_abd05581f8da7d00b5d3cb2326f592dab}{do\+Get} (Http\+Servlet\+Request request, Http\+Servlet\+Response response)  throws Servlet\+Exception, I\+O\+Exception 
+\item 
+void \hyperlink{classcom_1_1mert_1_1_update_d_b_a8c87bdcc44be032b163f3d996d230585}{do\+Post} (Http\+Servlet\+Request request, Http\+Servlet\+Response response)  throws Servlet\+Exception, I\+O\+Exception 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Queries the wikidata.\+org to get up-\/to-\/date information and stores it in local DB \begin{DoxyAuthor}{Author}
+Mert 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\index{com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}!do\+Get@{do\+Get}}
+\index{do\+Get@{do\+Get}!com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}}
+\subsubsection[{\texorpdfstring{do\+Get(\+Http\+Servlet\+Request request, Http\+Servlet\+Response response)}{doGet(HttpServletRequest request, HttpServletResponse response)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+mert.\+Update\+D\+B.\+do\+Get (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request, }
+\item[{Http\+Servlet\+Response}]{response}
+\end{DoxyParamCaption}
+) throws Servlet\+Exception, I\+O\+Exception\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classcom_1_1mert_1_1_update_d_b_abd05581f8da7d00b5d3cb2326f592dab}{}\label{classcom_1_1mert_1_1_update_d_b_abd05581f8da7d00b5d3cb2326f592dab}
+\begin{DoxySeeAlso}{See also}
+Http\+Servlet\+::do\+Get(Http\+Servlet\+Request request, Http\+Servlet\+Response response) 
+\end{DoxySeeAlso}
+\index{com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}!do\+Post@{do\+Post}}
+\index{do\+Post@{do\+Post}!com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}}
+\subsubsection[{\texorpdfstring{do\+Post(\+Http\+Servlet\+Request request, Http\+Servlet\+Response response)}{doPost(HttpServletRequest request, HttpServletResponse response)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+mert.\+Update\+D\+B.\+do\+Post (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request, }
+\item[{Http\+Servlet\+Response}]{response}
+\end{DoxyParamCaption}
+) throws Servlet\+Exception, I\+O\+Exception\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classcom_1_1mert_1_1_update_d_b_a8c87bdcc44be032b163f3d996d230585}{}\label{classcom_1_1mert_1_1_update_d_b_a8c87bdcc44be032b163f3d996d230585}
+\begin{DoxySeeAlso}{See also}
+Http\+Servlet\+::do\+Post(Http\+Servlet\+Request request, Http\+Servlet\+Response response) 
+\end{DoxySeeAlso}
+\index{com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}!parse\+Count@{parse\+Count}}
+\index{parse\+Count@{parse\+Count}!com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}}
+\subsubsection[{\texorpdfstring{parse\+Count(\+String s)}{parseCount(String s)}}]{\setlength{\rightskip}{0pt plus 5cm}int com.\+mert.\+Update\+D\+B.\+parse\+Count (
+\begin{DoxyParamCaption}
+\item[{String}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1mert_1_1_update_d_b_abdd8ebc75cea7ddd5ec0e5209fe33aab}{}\label{classcom_1_1mert_1_1_update_d_b_abdd8ebc75cea7ddd5ec0e5209fe33aab}
+Parses the retrieved \char`\"{}count\char`\"{} string and turns it into the integer before character \char`\"{}$^\wedge$\char`\"{} 
+\begin{DoxyParams}{Parameters}
+{\em s} & String to be parsed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+count as integer 
+\end{DoxyReturn}
+\index{com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}!parse\+Genre@{parse\+Genre}}
+\index{parse\+Genre@{parse\+Genre}!com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}}
+\subsubsection[{\texorpdfstring{parse\+Genre(\+String s)}{parseGenre(String s)}}]{\setlength{\rightskip}{0pt plus 5cm}static String com.\+mert.\+Update\+D\+B.\+parse\+Genre (
+\begin{DoxyParamCaption}
+\item[{String}]{s}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classcom_1_1mert_1_1_update_d_b_a318392aaae286a267a142550bdd78ca0}{}\label{classcom_1_1mert_1_1_update_d_b_a318392aaae286a267a142550bdd78ca0}
+Parses the retrieved \char`\"{}genre\char`\"{} string and turns it into the integer before character \char`\"{}@\char`\"{} 
+\begin{DoxyParams}{Parameters}
+{\em s} & String to be parsed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+genre as string 
+\end{DoxyReturn}
+\index{com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}!parse\+Link@{parse\+Link}}
+\index{parse\+Link@{parse\+Link}!com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}}
+\subsubsection[{\texorpdfstring{parse\+Link(\+String s)}{parseLink(String s)}}]{\setlength{\rightskip}{0pt plus 5cm}String com.\+mert.\+Update\+D\+B.\+parse\+Link (
+\begin{DoxyParamCaption}
+\item[{String}]{s}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1mert_1_1_update_d_b_abb3f580bac381c22f673cb8ea31cd98c}{}\label{classcom_1_1mert_1_1_update_d_b_abb3f580bac381c22f673cb8ea31cd98c}
+Parses the retrieved \char`\"{}link\char`\"{} string and takes the last ID part 
+\begin{DoxyParams}{Parameters}
+{\em s} & String to be parsed \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+ID as string i.\+e Q342 
+\end{DoxyReturn}
+\index{com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}!truncate\+DB@{truncate\+DB}}
+\index{truncate\+DB@{truncate\+DB}!com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}}
+\subsubsection[{\texorpdfstring{truncate\+D\+B()}{truncateDB()}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+mert.\+Update\+D\+B.\+truncate\+DB (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1mert_1_1_update_d_b_ac0ad352f8b973b5d27acd72ad42f9028}{}\label{classcom_1_1mert_1_1_update_d_b_ac0ad352f8b973b5d27acd72ad42f9028}
+Deletes all entries from the local DB 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/com/mert/Update\+D\+B.\+java\end{DoxyCompactItemize}

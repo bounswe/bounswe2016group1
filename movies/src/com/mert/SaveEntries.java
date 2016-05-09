@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class SaveEntries
+ * Receives checked IDs by POST method and inserts them into local mysql DB
+ * ignores duplicate entries and prints results to html.
+  * @author Mert
  */
 @WebServlet("/SaveEntries")
 public class SaveEntries extends HttpServlet {

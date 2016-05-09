@@ -22,7 +22,9 @@ import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 
 /**
- * Servlet implementation class Search
+ * Creates an arraylist of arraylists that hold Strings( i.e 2D String holder data structures) 
+ * a movie subject from db is split into its words and are inserted into the arraylist.
+ *  @author Mert
  */
 @WebServlet("/Search")
 public class Search extends HttpServlet {
@@ -79,7 +81,15 @@ public class Search extends HttpServlet {
 		}
 		ArrayList<String> foundAt = searchArrayList(db, searchTerm);
 		if (foundAt == null) {
-			System.out.println("couldnt find the subject");
+			out.println("<!DOCTYPE html>");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<title>Movies</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("couldnt find any subjects related to searched term");
+			out.println("</body>");
+			out.println("</html>");
 			return;
 		} else
 			displayResults(foundAt, out);
@@ -93,7 +103,13 @@ public class Search extends HttpServlet {
 		}
 
 	}
-
+/**
+ * The function then compares each word for a match with the searched term. If a match is found its main subject ID is saved to results.
+ * It is case sensitive and can not handle small typos.
+ * @param db Named as it holds the info from the database to be searched.
+ * @param searchTerm Entered 
+ * @return list of IDs of subjects
+ */
 	public ArrayList<String> searchArrayList(ArrayList<ArrayList<String>> db, String searchTerm) {
 		String ID = null;
 		ArrayList<String> results = new ArrayList<String>();
@@ -113,7 +129,13 @@ public class Search extends HttpServlet {
 		return results;
 
 	}
-
+/**
+ * Receives results of search from the searchArrayList function as an ArrayList.
+ * Queries wikidata.org for movies with the related Main Subjects that were found in search.
+ * Lastly prints results of wikidata query to html.
+ * @param foundAt List of search results
+ * @param out PrintWriter object used to print to html.
+ */
 	public void displayResults(ArrayList<String> foundAt, PrintWriter out) {
 
 	

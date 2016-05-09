@@ -22,8 +22,8 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSetFormatter;
 
 /**
- * Queries the wikidata.org to get up-to-date information and stores it in local
- * db
+ * Queries the wikidata.org to get up-to-date information and stores it in local DB
+ * @author Mert
  */
 @WebServlet("/UpdateDB")
 public class UpdateDB extends HttpServlet {

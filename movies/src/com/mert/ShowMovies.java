@@ -21,7 +21,9 @@ import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 
 /**
- * Servlet implementation class ShowMovies
+ * Receives main subjects IDS from local DB and searches wikidata for movies that won oscar with that subject. 
+ * Prints resulting movies and their subjects as a table
+ *  @author Mert
  */
 @WebServlet("/ShowMovies")
 public class ShowMovies extends HttpServlet {

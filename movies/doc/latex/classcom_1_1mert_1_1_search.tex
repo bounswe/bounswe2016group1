@@ -1,0 +1,103 @@
+\hypertarget{classcom_1_1mert_1_1_search}{}\section{com.\+mert.\+Search Class Reference}
+\label{classcom_1_1mert_1_1_search}\index{com.\+mert.\+Search@{com.\+mert.\+Search}}
+Inheritance diagram for com.\+mert.\+Search\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classcom_1_1mert_1_1_search}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classcom_1_1mert_1_1_search_adb57f5c1f90037b37445e6caddbae989}{Search} ()
+\item 
+Array\+List$<$ String $>$ \hyperlink{classcom_1_1mert_1_1_search_a07fd75951344d799a0b03eff2a3d7711}{search\+Array\+List} (Array\+List$<$ Array\+List$<$ String $>$$>$ db, String search\+Term)
+\item 
+void \hyperlink{classcom_1_1mert_1_1_search_a4c940ac4695b377b89cb90ec5a9909a5}{display\+Results} (Array\+List$<$ String $>$ found\+At, Print\+Writer out)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{classcom_1_1mert_1_1_search_a28593c1902aa8b54f267384d666744d1}{do\+Get} (Http\+Servlet\+Request request, Http\+Servlet\+Response response)  throws Servlet\+Exception, I\+O\+Exception 
+\item 
+void \hyperlink{classcom_1_1mert_1_1_search_a83f297bcd977985a9f999ae6212168bd}{do\+Post} (Http\+Servlet\+Request request, Http\+Servlet\+Response response)  throws Servlet\+Exception, I\+O\+Exception 
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Creates an arraylist of arraylists that hold Strings( i.\+e 2D String holder data structures) a movie subject from db is split into its words and are inserted into the arraylist. 
+
+\subsection{Constructor \& Destructor Documentation}
+\index{com\+::mert\+::\+Search@{com\+::mert\+::\+Search}!Search@{Search}}
+\index{Search@{Search}!com\+::mert\+::\+Search@{com\+::mert\+::\+Search}}
+\subsubsection[{\texorpdfstring{Search()}{Search()}}]{\setlength{\rightskip}{0pt plus 5cm}com.\+mert.\+Search.\+Search (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1mert_1_1_search_adb57f5c1f90037b37445e6caddbae989}{}\label{classcom_1_1mert_1_1_search_adb57f5c1f90037b37445e6caddbae989}
+\begin{DoxySeeAlso}{See also}
+Http\+Servlet\+::\+Http\+Servlet() 
+\end{DoxySeeAlso}
+
+
+\subsection{Member Function Documentation}
+\index{com\+::mert\+::\+Search@{com\+::mert\+::\+Search}!display\+Results@{display\+Results}}
+\index{display\+Results@{display\+Results}!com\+::mert\+::\+Search@{com\+::mert\+::\+Search}}
+\subsubsection[{\texorpdfstring{display\+Results(\+Array\+List$<$ String $>$ found\+At, Print\+Writer out)}{displayResults(ArrayList< String > foundAt, PrintWriter out)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+mert.\+Search.\+display\+Results (
+\begin{DoxyParamCaption}
+\item[{Array\+List$<$ String $>$}]{found\+At, }
+\item[{Print\+Writer}]{out}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1mert_1_1_search_a4c940ac4695b377b89cb90ec5a9909a5}{}\label{classcom_1_1mert_1_1_search_a4c940ac4695b377b89cb90ec5a9909a5}
+Receives results of search from the search\+Array\+List function as an Array\+List. Queries wikidata.\+org for movies with the related Main Subjects that were found in search. Lastly prints results of wikidata query to html. 
+\begin{DoxyParams}{Parameters}
+{\em found\+At} & List of search results \\
+\hline
+{\em out} & Print\+Writer object used to print to html. \\
+\hline
+\end{DoxyParams}
+\index{com\+::mert\+::\+Search@{com\+::mert\+::\+Search}!do\+Get@{do\+Get}}
+\index{do\+Get@{do\+Get}!com\+::mert\+::\+Search@{com\+::mert\+::\+Search}}
+\subsubsection[{\texorpdfstring{do\+Get(\+Http\+Servlet\+Request request, Http\+Servlet\+Response response)}{doGet(HttpServletRequest request, HttpServletResponse response)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+mert.\+Search.\+do\+Get (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request, }
+\item[{Http\+Servlet\+Response}]{response}
+\end{DoxyParamCaption}
+) throws Servlet\+Exception, I\+O\+Exception\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classcom_1_1mert_1_1_search_a28593c1902aa8b54f267384d666744d1}{}\label{classcom_1_1mert_1_1_search_a28593c1902aa8b54f267384d666744d1}
+\begin{DoxySeeAlso}{See also}
+Http\+Servlet\+::do\+Get(Http\+Servlet\+Request request, Http\+Servlet\+Response response) 
+\end{DoxySeeAlso}
+\index{com\+::mert\+::\+Search@{com\+::mert\+::\+Search}!do\+Post@{do\+Post}}
+\index{do\+Post@{do\+Post}!com\+::mert\+::\+Search@{com\+::mert\+::\+Search}}
+\subsubsection[{\texorpdfstring{do\+Post(\+Http\+Servlet\+Request request, Http\+Servlet\+Response response)}{doPost(HttpServletRequest request, HttpServletResponse response)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+mert.\+Search.\+do\+Post (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request, }
+\item[{Http\+Servlet\+Response}]{response}
+\end{DoxyParamCaption}
+) throws Servlet\+Exception, I\+O\+Exception\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classcom_1_1mert_1_1_search_a83f297bcd977985a9f999ae6212168bd}{}\label{classcom_1_1mert_1_1_search_a83f297bcd977985a9f999ae6212168bd}
+\begin{DoxySeeAlso}{See also}
+Http\+Servlet\+::do\+Post(Http\+Servlet\+Request request, Http\+Servlet\+Response response) 
+\end{DoxySeeAlso}
+\index{com\+::mert\+::\+Search@{com\+::mert\+::\+Search}!search\+Array\+List@{search\+Array\+List}}
+\index{search\+Array\+List@{search\+Array\+List}!com\+::mert\+::\+Search@{com\+::mert\+::\+Search}}
+\subsubsection[{\texorpdfstring{search\+Array\+List(\+Array\+List$<$ Array\+List$<$ String $>$$>$ db, String search\+Term)}{searchArrayList(ArrayList< ArrayList< String >> db, String searchTerm)}}]{\setlength{\rightskip}{0pt plus 5cm}Array\+List$<$String$>$ com.\+mert.\+Search.\+search\+Array\+List (
+\begin{DoxyParamCaption}
+\item[{Array\+List$<$ Array\+List$<$ String $>$$>$}]{db, }
+\item[{String}]{search\+Term}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1mert_1_1_search_a07fd75951344d799a0b03eff2a3d7711}{}\label{classcom_1_1mert_1_1_search_a07fd75951344d799a0b03eff2a3d7711}
+The function then compares each word for a match with the searched term. If a match is found its main subject ID is saved to results. It is case sensitive and can not handle small typos. 
+\begin{DoxyParams}{Parameters}
+{\em db} & Named as it holds the info from the database to be searched. \\
+\hline
+{\em search\+Term} & Entered \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+list of I\+Ds of subjects 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/com/mert/Search.\+java\end{DoxyCompactItemize}

@@ -1,5 +1,9 @@
 package com.mert;
-
+/**
+ * 
+ * @author Mert
+ * Basic class for Genres with a constructor that initializes variables.
+ */
 public class Genre {
 
 	int ID;
