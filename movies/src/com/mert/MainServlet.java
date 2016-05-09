@@ -128,9 +128,23 @@ public class MainServlet extends HttpServlet {
 			out.println("<input type=\"submit\" name=\"but3\" method=\"POST\" id=\"f3\"value=\"Show stored entries\">");
 			out.println("</form>");
 
+
+			
+			out.println("<table border=\"1\">");
+			out.println("<form method=\"post\" name=\"frm\" action=\"Search\">");
+			out.println("<table border=\"0\" width=\"430\">");
+			out.println("<tr><td colspan=2 style=\"font-size:12pt;\" align=\"right\">");
+			out.println("<tr><td ><b>Search Movie Subject</b></td>");
+			out.println("<td>: <input  type=\"text\" name=\"pid\" id=\"pid\">");
+			out.println("</td></tr>        ");
+			out.println("<tr><td  align=\"right\">");
+			out.println("<input  type=\"submit\" name=\"submit\" value=\"Search\"></td></tr>");
+			out.println("</table>");
+			out.println("</form>");
+			out.println("<table border=\"1\">");
 			out.println("<form action=\"SaveEntries\" method=\"POST\" id=\"my_form\">");
 			out.println("<input type=\"submit\" name=\"but4\" value=\"Store checked entries\">");
-			out.println("<table border=\"1\">");
+
 			try {
 				connectToDB();
 				sql = "SELECT `movies`.`genre`, `movies`.`genreID`, `movies`.`count` FROM `sakila`.`movies` ORDER BY `count` DESC;";
@@ -160,9 +174,6 @@ public class MainServlet extends HttpServlet {
 
 			out.println("</table>");
 			out.println("</form>");
-			out.println("</body>");
-			out.println("</html>");
-			out.println("</center>");
 			out.println("</body>");
 			out.println("</html>");
 			out.close();
