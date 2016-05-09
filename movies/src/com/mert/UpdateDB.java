@@ -22,8 +22,8 @@ import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSetFormatter;
 
 /**
- * Queries the wikidata.org to get up-to-date information and stores it in local
- * db
+ * Queries the wikidata.org to get up-to-date information and stores it in local DB
+ * @author Mert
  */
 @WebServlet("/UpdateDB")
 public class UpdateDB extends HttpServlet {
@@ -73,8 +73,7 @@ public class UpdateDB extends HttpServlet {
 
 	}
 	public UpdateDB() {
-		conn = MainServlet.conn;
-		stmt = MainServlet.stmt;
+
 	}
 
 	/**
@@ -83,6 +82,8 @@ public class UpdateDB extends HttpServlet {
 	public void truncateDB() {
 		try {
 			MainServlet.connectToDB();
+			conn = MainServlet.conn;
+			stmt = MainServlet.stmt;
 			sql = "TRUNCATE `sakila`.`movies`;";
 
 			stmt.executeUpdate(sql);
@@ -145,7 +146,8 @@ public class UpdateDB extends HttpServlet {
 		truncateDB(); //flush db first
 		try {
 			MainServlet.connectToDB();
-			
+			conn = MainServlet.conn;
+			stmt = MainServlet.stmt;
 			while (!genreList.isEmpty()) {
 				sql = "INSERT INTO `sakila`.`movies` (`genre`,`count`,`genreID`) "
 						+ "VALUES(\"" + genreList.get(0).genre + "\","+ genreList.get(0).count +",\"" + genreList.get(0).genreID + "\");";

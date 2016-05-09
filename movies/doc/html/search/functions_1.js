@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['mainservlet',['MainServlet',['../classcom_1_1mert_1_1_main_servlet.html#a4cd4816907ef657cfb6c7a2403551360',1,'com::mert::MainServlet']]]
+  ['displayresults',['displayResults',['../classcom_1_1mert_1_1_search.html#a4c940ac4695b377b89cb90ec5a9909a5',1,'com::mert::Search']]],
+  ['doget',['doGet',['../classcom_1_1mert_1_1_main_servlet.html#aaff15cf3781104240eb7456c2e249bb5',1,'com.mert.MainServlet.doGet()'],['../classcom_1_1mert_1_1_save_entries.html#a5fff9e9797d0c58897db11c3a343f9c4',1,'com.mert.SaveEntries.doGet()'],['../classcom_1_1mert_1_1_search.html#a28593c1902aa8b54f267384d666744d1',1,'com.mert.Search.doGet()'],['../classcom_1_1mert_1_1_show_entries.html#aac85a39ebe42db0bb8b85d1384e4f24f',1,'com.mert.ShowEntries.doGet()'],['../classcom_1_1mert_1_1_show_movies.html#a9fa813716d40b2d43434755e72b20e1f',1,'com.mert.ShowMovies.doGet()'],['../classcom_1_1mert_1_1_update_d_b.html#abd05581f8da7d00b5d3cb2326f592dab',1,'com.mert.UpdateDB.doGet()']]],
+  ['dopost',['doPost',['../classcom_1_1mert_1_1_save_entries.html#ad7a78cb05ce7e6fcbb17e4046d5f2765',1,'com.mert.SaveEntries.doPost()'],['../classcom_1_1mert_1_1_search.html#a83f297bcd977985a9f999ae6212168bd',1,'com.mert.Search.doPost()'],['../classcom_1_1mert_1_1_show_entries.html#a84c2823b4ee4487c4f969932213d5587',1,'com.mert.ShowEntries.doPost()'],['../classcom_1_1mert_1_1_show_movies.html#a4000ab0c0da1f5e6b501829dd8b2a576',1,'com.mert.ShowMovies.doPost()'],['../classcom_1_1mert_1_1_update_d_b.html#a8c87bdcc44be032b163f3d996d230585',1,'com.mert.UpdateDB.doPost()']]],
+  ['drawpage',['drawPage',['../classcom_1_1mert_1_1_main_servlet.html#a4add4495834801a2cd1aad092e08d2fb',1,'com::mert::MainServlet']]]
 ];

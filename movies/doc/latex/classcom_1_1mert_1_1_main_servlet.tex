@@ -10,16 +10,31 @@ Inheritance diagram for com.\+mert.\+Main\+Servlet\+:\begin{figure}[H]
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classcom_1_1mert_1_1_main_servlet_a4cd4816907ef657cfb6c7a2403551360}{Main\+Servlet} ()
+\item 
+void \hyperlink{classcom_1_1mert_1_1_main_servlet_a2f201a8c0bc5b379d4980eae65e774ba}{create\+Movies\+Table} ()
+\item 
+void \hyperlink{classcom_1_1mert_1_1_main_servlet_a4add4495834801a2cd1aad092e08d2fb}{draw\+Page} (Http\+Servlet\+Request request, Http\+Servlet\+Response response)  throws I\+O\+Exception, Servlet\+Exception, Class\+Not\+Found\+Exception 
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static boolean \hyperlink{classcom_1_1mert_1_1_main_servlet_a44e2c429b5f5c9e74f58d8ec0c044e63}{connect\+To\+DB} ()
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 void \hyperlink{classcom_1_1mert_1_1_main_servlet_aaff15cf3781104240eb7456c2e249bb5}{do\+Get} (Http\+Servlet\+Request request, Http\+Servlet\+Response response)  throws Servlet\+Exception, I\+O\+Exception 
+\item 
+void {\bfseries do\+Post} (Http\+Servlet\+Request request, Http\+Servlet\+Response response)  throws Servlet\+Exception, I\+O\+Exception \hypertarget{classcom_1_1mert_1_1_main_servlet_aa028f4c39c100861db897d9d70407249}{}\label{classcom_1_1mert_1_1_main_servlet_aa028f4c39c100861db897d9d70407249}
+
 \end{DoxyCompactItemize}
 
 
 \subsection{Detailed Description}
-Servlet implementation class \hyperlink{classcom_1_1mert_1_1_main_servlet}{Main\+Servlet} 
+\begin{DoxyAuthor}{Author}
+Mert Landing page of this web app 
+\end{DoxyAuthor}
+
 
 \subsection{Constructor \& Destructor Documentation}
 \index{com\+::mert\+::\+Main\+Servlet@{com\+::mert\+::\+Main\+Servlet}!Main\+Servlet@{Main\+Servlet}}
@@ -35,7 +50,28 @@ Http\+Servlet\+::\+Http\+Servlet()
 
 
 \subsection{Member Function Documentation}
-\index{com\+::mert\+::\+Main\+Servlet@{com\+::mert\+::\+Main\+Servlet}!do\+Get@{do\+Get}}
+\index{com\+::mert\+::\+Main\+Servlet@{com\+::mert\+::\+Main\+Servlet}!connect\+To\+DB@{connect\+To\+DB}}
+\index{connect\+To\+DB@{connect\+To\+DB}!com\+::mert\+::\+Main\+Servlet@{com\+::mert\+::\+Main\+Servlet}}
+\subsubsection[{\texorpdfstring{connect\+To\+D\+B()}{connectToDB()}}]{\setlength{\rightskip}{0pt plus 5cm}static boolean com.\+mert.\+Main\+Servlet.\+connect\+To\+DB (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classcom_1_1mert_1_1_main_servlet_a44e2c429b5f5c9e74f58d8ec0c044e63}{}\label{classcom_1_1mert_1_1_main_servlet_a44e2c429b5f5c9e74f58d8ec0c044e63}
+Handles all of the sql connections, it is static and is used by other classes too
+
+\begin{DoxyReturn}{Returns}
+true if a connection already existed or just established 
+
+false if connection could not be established 
+\end{DoxyReturn}
+\index{com\+::mert\+::\+Main\+Servlet@{com\+::mert\+::\+Main\+Servlet}!create\+Movies\+Table@{create\+Movies\+Table}}
+\index{create\+Movies\+Table@{create\+Movies\+Table}!com\+::mert\+::\+Main\+Servlet@{com\+::mert\+::\+Main\+Servlet}}
+\subsubsection[{\texorpdfstring{create\+Movies\+Table()}{createMoviesTable()}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+mert.\+Main\+Servlet.\+create\+Movies\+Table (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{classcom_1_1mert_1_1_main_servlet_a2f201a8c0bc5b379d4980eae65e774ba}{}\label{classcom_1_1mert_1_1_main_servlet_a2f201a8c0bc5b379d4980eae65e774ba}
+Create movies in local db assuming it does not exist \index{com\+::mert\+::\+Main\+Servlet@{com\+::mert\+::\+Main\+Servlet}!do\+Get@{do\+Get}}
 \index{do\+Get@{do\+Get}!com\+::mert\+::\+Main\+Servlet@{com\+::mert\+::\+Main\+Servlet}}
 \subsubsection[{\texorpdfstring{do\+Get(\+Http\+Servlet\+Request request, Http\+Servlet\+Response response)}{doGet(HttpServletRequest request, HttpServletResponse response)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+mert.\+Main\+Servlet.\+do\+Get (
 \begin{DoxyParamCaption}
@@ -43,9 +79,35 @@ Http\+Servlet\+::\+Http\+Servlet()
 \item[{Http\+Servlet\+Response}]{response}
 \end{DoxyParamCaption}
 ) throws Servlet\+Exception, I\+O\+Exception\hspace{0.3cm}{\ttfamily [protected]}}\hypertarget{classcom_1_1mert_1_1_main_servlet_aaff15cf3781104240eb7456c2e249bb5}{}\label{classcom_1_1mert_1_1_main_servlet_aaff15cf3781104240eb7456c2e249bb5}
+This function acts as main and is executed when page is requested.
+
 \begin{DoxySeeAlso}{See also}
-Http\+Servlet\+::do\+Get(\+Http\+Servlet\+Request request, Http\+Servlet\+Response response) 
+Http\+Servlet\+::do\+Get(Http\+Servlet\+Request request, Http\+Servlet\+Response response) 
 \end{DoxySeeAlso}
+\index{com\+::mert\+::\+Main\+Servlet@{com\+::mert\+::\+Main\+Servlet}!draw\+Page@{draw\+Page}}
+\index{draw\+Page@{draw\+Page}!com\+::mert\+::\+Main\+Servlet@{com\+::mert\+::\+Main\+Servlet}}
+\subsubsection[{\texorpdfstring{draw\+Page(\+Http\+Servlet\+Request request, Http\+Servlet\+Response response)}{drawPage(HttpServletRequest request, HttpServletResponse response)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+mert.\+Main\+Servlet.\+draw\+Page (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request, }
+\item[{Http\+Servlet\+Response}]{response}
+\end{DoxyParamCaption}
+) throws I\+O\+Exception, Servlet\+Exception, Class\+Not\+Found\+Exception}\hypertarget{classcom_1_1mert_1_1_main_servlet_a4add4495834801a2cd1aad092e08d2fb}{}\label{classcom_1_1mert_1_1_main_servlet_a4add4495834801a2cd1aad092e08d2fb}
+Prints out all the html contents on main page such as buttons and search 
+\begin{DoxyParams}{Parameters}
+{\em request} & \\
+\hline
+{\em response} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em I\+O\+Exception} & \\
+\hline
+{\em Servlet\+Exception} & \\
+\hline
+{\em Class\+Not\+Found\+Exception} & \\
+\hline
+\end{DoxyExceptions}
 
 
 The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}

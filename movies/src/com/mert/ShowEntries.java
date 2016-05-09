@@ -15,7 +15,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class ShowEntries
+ * Queries and displays entries stored in local DB
+ * Only the ID is stored and is shown.
+ *  @author Mert
  */
 @WebServlet("/ShowEntries")
 public class ShowEntries extends HttpServlet {
