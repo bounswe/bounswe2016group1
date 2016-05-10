@@ -9,11 +9,7 @@ public class functions {
 		Class.forName("com.mysql.jdbc.Driver");
 		MainServlet.conn = DriverManager.getConnection(MainServlet.url, MainServlet.user, MainServlet.pass);
 		
-		if(MainServlet.conn != null){
-			return true;
-		}else{
-			return false;
-		}
+		return true;
 	}
 
 	public static void createtable(String tablename) throws SQLException{
@@ -55,16 +51,16 @@ public class functions {
 	}
 	
 	public static void select(String fieldlist, String tablename) throws SQLException{
-		MainServlet.query = "SEARCH " + fieldlist
-				+ "FROM" + tablename +  ";";
+		MainServlet.query = "SELECT " + fieldlist
+				+ " FROM " + tablename +  ";";
 		
 		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
 		MainServlet.result = MainServlet.statement.executeQuery();
 	}
 	public static void select(String fieldlist, String tablename, String condition) throws SQLException{
-		MainServlet.query = "SEARCH " + fieldlist
-				+ "FROM" + tablename
-				+ "WHERE " + condition +  ";";
+		MainServlet.query = "SELECT " + fieldlist
+				+ " FROM " + tablename
+				+ " WHERE " + condition +  ";";
 		
 		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
 		MainServlet.result = MainServlet.statement.executeQuery();
