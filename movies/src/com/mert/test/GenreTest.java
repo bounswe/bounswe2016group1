@@ -1,10 +1,9 @@
 package com.mert.test;
-import static org.junit.Assert.*;
-import java.util.*;
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
 
-import com.mert.*;
+import com.mert.Genre;
 /**
  * 
  * @author Mert

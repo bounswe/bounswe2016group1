@@ -8,12 +8,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
-import java.util.Set;
 import java.util.TreeMap;
 
 import javax.servlet.ServletException;
@@ -132,11 +130,11 @@ public class Search extends HttpServlet {
 				e.printStackTrace();
 			}
 		}
-		TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(genreComp);
-		sorted_map.putAll(map);
+		TreeMap<String, Integer> sortedMap = new TreeMap<String, Integer>(genreComp);
+		sortedMap.putAll(map);
 		
 		MainServlet.closeDBConnections();
-		return sorted_map;
+		return sortedMap;
 	}
 
 	/**
@@ -232,7 +230,11 @@ public class Search extends HttpServlet {
 		out.println("</html>");
 
 	}
-
+	/**
+	 * 
+	 * @author Mert
+	 *
+	 */
 	class Comp implements Comparator<String> {
 		Map<String, Integer> base;
 
