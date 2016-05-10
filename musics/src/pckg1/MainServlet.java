@@ -37,37 +37,49 @@ public class MainServlet extends HttpServlet {
      */
     public MainServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
+    
+    
+    
+    
+    
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+     
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		PrintWriter pw = response.getWriter();
 		
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(url, user, pass);
-		} catch (Exception e1) {
-			e1.printStackTrace();
-		}
 		
-		if(conn != null){
-			try {
-				query = "SELECT * FROM table1";
-				statement = conn.prepareStatement(query);
-				result = statement.executeQuery();
+		try {
+			if( functions.connect()){
+				functions.select("*", "table1");
 				
 				while(result.next()){
-					System.out.println(result.getString(1)+" "+result.getString(2));
+					pw.println(result.getString(1)+" "+result.getString(2));
 				}
-				
-			} catch (SQLException e) {e.printStackTrace();}
-		}
+			}
+		} catch (ClassNotFoundException | SQLException e1) {e1.printStackTrace();}
+	
+		
 	}
 
+	// -----------------------------------------------------------
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+   
+	
+	
+	
+	
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -1,4 +1,4 @@
-package com.mert;
+Mpackage com.mert;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -106,13 +106,10 @@ public class MainServlet extends HttpServlet {
 		}
 		return true;
 	}
+
 /**
  * Prints out all the html contents on main page such as buttons and search
- * @param request
- * @param response
- * @throws IOException
- * @throws ServletException
- * @throws ClassNotFoundException
+ *
  */
 	public void drawPage(HttpServletRequest request, HttpServletResponse response)
 			throws IOException, ServletException, ClassNotFoundException {
