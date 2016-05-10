@@ -6,14 +6,22 @@ Inheritance diagram for com.\+mert.\+Search\+:\begin{figure}[H]
 \includegraphics[height=2.000000cm]{classcom_1_1mert_1_1_search}
 \end{center}
 \end{figure}
+\subsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class {\bfseries Comp}
+\end{DoxyCompactItemize}
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
 \hyperlink{classcom_1_1mert_1_1_search_adb57f5c1f90037b37445e6caddbae989}{Search} ()
 \item 
+Tree\+Map$<$ String, Integer $>$ {\bfseries sort\+Results} (Array\+List$<$ String $>$ found\+At)\hypertarget{classcom_1_1mert_1_1_search_a0ad68f9506cfbba9d149930d76aceca6}{}\label{classcom_1_1mert_1_1_search_a0ad68f9506cfbba9d149930d76aceca6}
+
+\item 
 Array\+List$<$ String $>$ \hyperlink{classcom_1_1mert_1_1_search_a07fd75951344d799a0b03eff2a3d7711}{search\+Array\+List} (Array\+List$<$ Array\+List$<$ String $>$$>$ db, String search\+Term)
 \item 
-void \hyperlink{classcom_1_1mert_1_1_search_a4c940ac4695b377b89cb90ec5a9909a5}{display\+Results} (Array\+List$<$ String $>$ found\+At, Print\+Writer out)
+void \hyperlink{classcom_1_1mert_1_1_search_a2c25c0cf503bcc464fea33af4869ac42}{display\+Results} (Tree\+Map$<$ String, Integer $>$ found\+At, Print\+Writer out)
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -25,7 +33,12 @@ void \hyperlink{classcom_1_1mert_1_1_search_a83f297bcd977985a9f999ae6212168bd}{d
 
 
 \subsection{Detailed Description}
-Creates an arraylist of arraylists that hold Strings( i.\+e 2D String holder data structures) a movie subject from db is split into its words and are inserted into the arraylist. 
+Creates an arraylist of arraylists that hold Strings( i.\+e 2D String holder data structures) a movie subject from db is split into its words and are inserted into the arraylist.
+
+\begin{DoxyAuthor}{Author}
+Mert 
+\end{DoxyAuthor}
+
 
 \subsection{Constructor \& Destructor Documentation}
 \index{com\+::mert\+::\+Search@{com\+::mert\+::\+Search}!Search@{Search}}
@@ -43,13 +56,15 @@ Http\+Servlet\+::\+Http\+Servlet()
 \subsection{Member Function Documentation}
 \index{com\+::mert\+::\+Search@{com\+::mert\+::\+Search}!display\+Results@{display\+Results}}
 \index{display\+Results@{display\+Results}!com\+::mert\+::\+Search@{com\+::mert\+::\+Search}}
-\subsubsection[{\texorpdfstring{display\+Results(\+Array\+List$<$ String $>$ found\+At, Print\+Writer out)}{displayResults(ArrayList< String > foundAt, PrintWriter out)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+mert.\+Search.\+display\+Results (
+\subsubsection[{\texorpdfstring{display\+Results(\+Tree\+Map$<$ String, Integer $>$ found\+At, Print\+Writer out)}{displayResults(TreeMap< String, Integer > foundAt, PrintWriter out)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+mert.\+Search.\+display\+Results (
 \begin{DoxyParamCaption}
-\item[{Array\+List$<$ String $>$}]{found\+At, }
+\item[{Tree\+Map$<$ String, Integer $>$}]{found\+At, }
 \item[{Print\+Writer}]{out}
 \end{DoxyParamCaption}
-)}\hypertarget{classcom_1_1mert_1_1_search_a4c940ac4695b377b89cb90ec5a9909a5}{}\label{classcom_1_1mert_1_1_search_a4c940ac4695b377b89cb90ec5a9909a5}
-Receives results of search from the search\+Array\+List function as an Array\+List. Queries wikidata.\+org for movies with the related Main Subjects that were found in search. Lastly prints results of wikidata query to html. 
+)}\hypertarget{classcom_1_1mert_1_1_search_a2c25c0cf503bcc464fea33af4869ac42}{}\label{classcom_1_1mert_1_1_search_a2c25c0cf503bcc464fea33af4869ac42}
+Receives results of search from the search\+Array\+List function as an Array\+List. Queries wikidata.\+org for movies with the related Main Subjects that were found in search. Lastly prints results of wikidata query to html.
+
+
 \begin{DoxyParams}{Parameters}
 {\em found\+At} & List of search results \\
 \hline
@@ -86,7 +101,9 @@ Http\+Servlet\+::do\+Post(Http\+Servlet\+Request request, Http\+Servlet\+Respons
 \item[{String}]{search\+Term}
 \end{DoxyParamCaption}
 )}\hypertarget{classcom_1_1mert_1_1_search_a07fd75951344d799a0b03eff2a3d7711}{}\label{classcom_1_1mert_1_1_search_a07fd75951344d799a0b03eff2a3d7711}
-The function then compares each word for a match with the searched term. If a match is found its main subject ID is saved to results. It is case sensitive and can not handle small typos. 
+The function then compares each word for a match with the searched term. If a match is found its main subject ID is saved to results. It is case sensitive and can not handle small typos.
+
+
 \begin{DoxyParams}{Parameters}
 {\em db} & Named as it holds the info from the database to be searched. \\
 \hline

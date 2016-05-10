@@ -105,6 +105,7 @@ $(document).ready(function(){initNavTree('classcom_1_1mert_1_1_search.html','');
 
 <div class="header">
   <div class="summary">
+<a href="#nested-classes">Classes</a> &#124;
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classcom_1_1mert_1_1_search-members.html">List of all members</a>  </div>
@@ -121,14 +122,22 @@ Inheritance diagram for com.mert.Search:</div>
 </map>
  </div></div>
 <table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="nested-classes"></a>
+Classes</h2></td></tr>
+<tr class="memitem:"><td class="memItemLeft" align="right" valign="top">class &#160;</td><td class="memItemRight" valign="bottom"><b>Comp</b></td></tr>
+<tr class="separator:"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-methods"></a>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:adb57f5c1f90037b37445e6caddbae989"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mert_1_1_search.html#adb57f5c1f90037b37445e6caddbae989">Search</a> ()</td></tr>
 <tr class="separator:adb57f5c1f90037b37445e6caddbae989"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a0ad68f9506cfbba9d149930d76aceca6"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a0ad68f9506cfbba9d149930d76aceca6"></a>
+TreeMap&lt; String, Integer &gt;&#160;</td><td class="memItemRight" valign="bottom"><b>sortResults</b> (ArrayList&lt; String &gt; foundAt)</td></tr>
+<tr class="separator:a0ad68f9506cfbba9d149930d76aceca6"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a07fd75951344d799a0b03eff2a3d7711"><td class="memItemLeft" align="right" valign="top">ArrayList&lt; String &gt;&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mert_1_1_search.html#a07fd75951344d799a0b03eff2a3d7711">searchArrayList</a> (ArrayList&lt; ArrayList&lt; String &gt;&gt; db, String searchTerm)</td></tr>
 <tr class="separator:a07fd75951344d799a0b03eff2a3d7711"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a4c940ac4695b377b89cb90ec5a9909a5"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mert_1_1_search.html#a4c940ac4695b377b89cb90ec5a9909a5">displayResults</a> (ArrayList&lt; String &gt; foundAt, PrintWriter out)</td></tr>
-<tr class="separator:a4c940ac4695b377b89cb90ec5a9909a5"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a2c25c0cf503bcc464fea33af4869ac42"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mert_1_1_search.html#a2c25c0cf503bcc464fea33af4869ac42">displayResults</a> (TreeMap&lt; String, Integer &gt; foundAt, PrintWriter out)</td></tr>
+<tr class="separator:a2c25c0cf503bcc464fea33af4869ac42"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -138,7 +147,8 @@ Protected Member Functions</h2></td></tr>
 <tr class="separator:a83f297bcd977985a9f999ae6212168bd"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table>
 <a name="details" id="details"></a><h2 class="groupheader">Detailed Description</h2>
-<div class="textblock"><p>Creates an arraylist of arraylists that hold Strings( i.e 2D String holder data structures) a movie subject from db is split into its words and are inserted into the arraylist. </p>
+<div class="textblock"><p>Creates an arraylist of arraylists that hold Strings( i.e 2D String holder data structures) a movie subject from db is split into its words and are inserted into the arraylist.</p>
+<dl class="section author"><dt>Author</dt><dd>Mert </dd></dl>
 </div><h2 class="groupheader">Constructor &amp; Destructor Documentation</h2>
 <a class="anchor" id="adb57f5c1f90037b37445e6caddbae989"></a>
 <div class="memitem">
@@ -157,14 +167,14 @@ Protected Member Functions</h2></td></tr>
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
-<a class="anchor" id="a4c940ac4695b377b89cb90ec5a9909a5"></a>
+<a class="anchor" id="a2c25c0cf503bcc464fea33af4869ac42"></a>
 <div class="memitem">
 <div class="memproto">
       <table class="memname">
         <tr>
           <td class="memname">void com.mert.Search.displayResults </td>
           <td>(</td>
-          <td class="paramtype">ArrayList&lt; String &gt;&#160;</td>
+          <td class="paramtype">TreeMap&lt; String, Integer &gt;&#160;</td>
           <td class="paramname"><em>foundAt</em>, </td>
         </tr>
         <tr>
@@ -180,7 +190,8 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Receives results of search from the searchArrayList function as an ArrayList. Queries wikidata.org for movies with the related Main Subjects that were found in search. Lastly prints results of wikidata query to html. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>Receives results of search from the searchArrayList function as an ArrayList. Queries wikidata.org for movies with the related Main Subjects that were found in search. Lastly prints results of wikidata query to html.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">foundAt</td><td>List of search results </td></tr>
     <tr><td class="paramname">out</td><td>PrintWriter object used to print to html. </td></tr>
@@ -283,7 +294,8 @@ Protected Member Functions</h2></td></tr>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>The function then compares each word for a match with the searched term. If a match is found its main subject ID is saved to results. It is case sensitive and can not handle small typos. </p><dl class="params"><dt>Parameters</dt><dd>
+<p>The function then compares each word for a match with the searched term. If a match is found its main subject ID is saved to results. It is case sensitive and can not handle small typos.</p>
+<dl class="params"><dt>Parameters</dt><dd>
   <table class="params">
     <tr><td class="paramname">db</td><td>Named as it holds the info from the database to be searched. </td></tr>
     <tr><td class="paramname">searchTerm</td><td>Entered </td></tr>

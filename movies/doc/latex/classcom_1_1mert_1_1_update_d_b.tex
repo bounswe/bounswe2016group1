@@ -9,16 +9,16 @@ Inheritance diagram for com.\+mert.\+Update\+DB\+:\begin{figure}[H]
 \subsection*{Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
-int \hyperlink{classcom_1_1mert_1_1_update_d_b_abdd8ebc75cea7ddd5ec0e5209fe33aab}{parse\+Count} (String s)
-\item 
-String \hyperlink{classcom_1_1mert_1_1_update_d_b_abb3f580bac381c22f673cb8ea31cd98c}{parse\+Link} (String s)
-\item 
 void \hyperlink{classcom_1_1mert_1_1_update_d_b_ac0ad352f8b973b5d27acd72ad42f9028}{truncate\+DB} ()
 \end{DoxyCompactItemize}
 \subsection*{Static Public Member Functions}
 \begin{DoxyCompactItemize}
 \item 
+static int \hyperlink{classcom_1_1mert_1_1_update_d_b_a56821bedc78cacd17e6546e05b8d5fe2}{parse\+Count} (String s)
+\item 
 static String \hyperlink{classcom_1_1mert_1_1_update_d_b_a318392aaae286a267a142550bdd78ca0}{parse\+Genre} (String s)
+\item 
+static String \hyperlink{classcom_1_1mert_1_1_update_d_b_afc7e9c778e91d1cc8125fab56260efcb}{parse\+Link} (String s)
 \end{DoxyCompactItemize}
 \subsection*{Protected Member Functions}
 \begin{DoxyCompactItemize}
@@ -47,7 +47,7 @@ Mert
 \begin{DoxySeeAlso}{See also}
 Http\+Servlet\+::do\+Get(Http\+Servlet\+Request request, Http\+Servlet\+Response response) 
 \end{DoxySeeAlso}
-\index{com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}!do\+Post@{do\+Post}}
+Insert into movies into the local fresh db\index{com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}!do\+Post@{do\+Post}}
 \index{do\+Post@{do\+Post}!com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}}
 \subsubsection[{\texorpdfstring{do\+Post(\+Http\+Servlet\+Request request, Http\+Servlet\+Response response)}{doPost(HttpServletRequest request, HttpServletResponse response)}}]{\setlength{\rightskip}{0pt plus 5cm}void com.\+mert.\+Update\+D\+B.\+do\+Post (
 \begin{DoxyParamCaption}
@@ -60,11 +60,11 @@ Http\+Servlet\+::do\+Post(Http\+Servlet\+Request request, Http\+Servlet\+Respons
 \end{DoxySeeAlso}
 \index{com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}!parse\+Count@{parse\+Count}}
 \index{parse\+Count@{parse\+Count}!com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}}
-\subsubsection[{\texorpdfstring{parse\+Count(\+String s)}{parseCount(String s)}}]{\setlength{\rightskip}{0pt plus 5cm}int com.\+mert.\+Update\+D\+B.\+parse\+Count (
+\subsubsection[{\texorpdfstring{parse\+Count(\+String s)}{parseCount(String s)}}]{\setlength{\rightskip}{0pt plus 5cm}static int com.\+mert.\+Update\+D\+B.\+parse\+Count (
 \begin{DoxyParamCaption}
 \item[{String}]{s}
 \end{DoxyParamCaption}
-)}\hypertarget{classcom_1_1mert_1_1_update_d_b_abdd8ebc75cea7ddd5ec0e5209fe33aab}{}\label{classcom_1_1mert_1_1_update_d_b_abdd8ebc75cea7ddd5ec0e5209fe33aab}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classcom_1_1mert_1_1_update_d_b_a56821bedc78cacd17e6546e05b8d5fe2}{}\label{classcom_1_1mert_1_1_update_d_b_a56821bedc78cacd17e6546e05b8d5fe2}
 Parses the retrieved \char`\"{}count\char`\"{} string and turns it into the integer before character \char`\"{}$^\wedge$\char`\"{} 
 \begin{DoxyParams}{Parameters}
 {\em s} & String to be parsed \\
@@ -90,11 +90,11 @@ genre as string
 \end{DoxyReturn}
 \index{com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}!parse\+Link@{parse\+Link}}
 \index{parse\+Link@{parse\+Link}!com\+::mert\+::\+Update\+DB@{com\+::mert\+::\+Update\+DB}}
-\subsubsection[{\texorpdfstring{parse\+Link(\+String s)}{parseLink(String s)}}]{\setlength{\rightskip}{0pt plus 5cm}String com.\+mert.\+Update\+D\+B.\+parse\+Link (
+\subsubsection[{\texorpdfstring{parse\+Link(\+String s)}{parseLink(String s)}}]{\setlength{\rightskip}{0pt plus 5cm}static String com.\+mert.\+Update\+D\+B.\+parse\+Link (
 \begin{DoxyParamCaption}
 \item[{String}]{s}
 \end{DoxyParamCaption}
-)}\hypertarget{classcom_1_1mert_1_1_update_d_b_abb3f580bac381c22f673cb8ea31cd98c}{}\label{classcom_1_1mert_1_1_update_d_b_abb3f580bac381c22f673cb8ea31cd98c}
+)\hspace{0.3cm}{\ttfamily [static]}}\hypertarget{classcom_1_1mert_1_1_update_d_b_afc7e9c778e91d1cc8125fab56260efcb}{}\label{classcom_1_1mert_1_1_update_d_b_afc7e9c778e91d1cc8125fab56260efcb}
 Parses the retrieved \char`\"{}link\char`\"{} string and takes the last ID part 
 \begin{DoxyParams}{Parameters}
 {\em s} & String to be parsed \\

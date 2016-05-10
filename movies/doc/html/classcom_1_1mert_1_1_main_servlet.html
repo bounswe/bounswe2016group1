@@ -107,6 +107,7 @@ $(document).ready(function(){initNavTree('classcom_1_1mert_1_1_main_servlet.html
   <div class="summary">
 <a href="#pub-methods">Public Member Functions</a> &#124;
 <a href="#pub-static-methods">Static Public Member Functions</a> &#124;
+<a href="#pub-static-attribs">Static Public Attributes</a> &#124;
 <a href="#pro-methods">Protected Member Functions</a> &#124;
 <a href="classcom_1_1mert_1_1_main_servlet-members.html">List of all members</a>  </div>
   <div class="headertitle">
@@ -126,8 +127,6 @@ Inheritance diagram for com.mert.MainServlet:</div>
 Public Member Functions</h2></td></tr>
 <tr class="memitem:a4cd4816907ef657cfb6c7a2403551360"><td class="memItemLeft" align="right" valign="top">&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mert_1_1_main_servlet.html#a4cd4816907ef657cfb6c7a2403551360">MainServlet</a> ()</td></tr>
 <tr class="separator:a4cd4816907ef657cfb6c7a2403551360"><td class="memSeparator" colspan="2">&#160;</td></tr>
-<tr class="memitem:a2f201a8c0bc5b379d4980eae65e774ba"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mert_1_1_main_servlet.html#a2f201a8c0bc5b379d4980eae65e774ba">createMoviesTable</a> ()</td></tr>
-<tr class="separator:a2f201a8c0bc5b379d4980eae65e774ba"><td class="memSeparator" colspan="2">&#160;</td></tr>
 <tr class="memitem:a4add4495834801a2cd1aad092e08d2fb"><td class="memItemLeft" align="right" valign="top">void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mert_1_1_main_servlet.html#a4add4495834801a2cd1aad092e08d2fb">drawPage</a> (HttpServletRequest request, HttpServletResponse response)  throws IOException, ServletException, ClassNotFoundException </td></tr>
 <tr class="separator:a4add4495834801a2cd1aad092e08d2fb"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
@@ -135,6 +134,14 @@ Public Member Functions</h2></td></tr>
 Static Public Member Functions</h2></td></tr>
 <tr class="memitem:a44e2c429b5f5c9e74f58d8ec0c044e63"><td class="memItemLeft" align="right" valign="top">static boolean&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mert_1_1_main_servlet.html#a44e2c429b5f5c9e74f58d8ec0c044e63">connectToDB</a> ()</td></tr>
 <tr class="separator:a44e2c429b5f5c9e74f58d8ec0c044e63"><td class="memSeparator" colspan="2">&#160;</td></tr>
+<tr class="memitem:a257918854e3644b8c8d5e4eebb8f5267"><td class="memItemLeft" align="right" valign="top">static void&#160;</td><td class="memItemRight" valign="bottom"><a class="el" href="classcom_1_1mert_1_1_main_servlet.html#a257918854e3644b8c8d5e4eebb8f5267">closeDBConnections</a> ()</td></tr>
+<tr class="separator:a257918854e3644b8c8d5e4eebb8f5267"><td class="memSeparator" colspan="2">&#160;</td></tr>
+</table><table class="memberdecls">
+<tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pub-static-attribs"></a>
+Static Public Attributes</h2></td></tr>
+<tr class="memitem:a9ff2045e334deee0d20e6c335a1a5dce"><td class="memItemLeft" align="right" valign="top"><a class="anchor" id="a9ff2045e334deee0d20e6c335a1a5dce"></a>
+static String&#160;</td><td class="memItemRight" valign="bottom"><b>DB_URL</b> = &quot;jdbc:mysql://localhost:3306/mert&quot;</td></tr>
+<tr class="separator:a9ff2045e334deee0d20e6c335a1a5dce"><td class="memSeparator" colspan="2">&#160;</td></tr>
 </table><table class="memberdecls">
 <tr class="heading"><td colspan="2"><h2 class="groupheader"><a name="pro-methods"></a>
 Protected Member Functions</h2></td></tr>
@@ -164,6 +171,30 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>doPost</b> (HttpServl
 </div>
 </div>
 <h2 class="groupheader">Member Function Documentation</h2>
+<a class="anchor" id="a257918854e3644b8c8d5e4eebb8f5267"></a>
+<div class="memitem">
+<div class="memproto">
+<table class="mlabels">
+  <tr>
+  <td class="mlabels-left">
+      <table class="memname">
+        <tr>
+          <td class="memname">static void com.mert.MainServlet.closeDBConnections </td>
+          <td>(</td>
+          <td class="paramname"></td><td>)</td>
+          <td></td>
+        </tr>
+      </table>
+  </td>
+  <td class="mlabels-right">
+<span class="mlabels"><span class="mlabel">static</span></span>  </td>
+  </tr>
+</table>
+</div><div class="memdoc">
+<p>Closes open local DB connections gracefully. </p>
+
+</div>
+</div>
 <a class="anchor" id="a44e2c429b5f5c9e74f58d8ec0c044e63"></a>
 <div class="memitem">
 <div class="memproto">
@@ -188,22 +219,6 @@ void&#160;</td><td class="memItemRight" valign="bottom"><b>doPost</b> (HttpServl
 <dl class="section return"><dt>Returns</dt><dd>true if a connection already existed or just established </dd>
 <dd>
 false if connection could not be established </dd></dl>
-
-</div>
-</div>
-<a class="anchor" id="a2f201a8c0bc5b379d4980eae65e774ba"></a>
-<div class="memitem">
-<div class="memproto">
-      <table class="memname">
-        <tr>
-          <td class="memname">void com.mert.MainServlet.createMoviesTable </td>
-          <td>(</td>
-          <td class="paramname"></td><td>)</td>
-          <td></td>
-        </tr>
-      </table>
-</div><div class="memdoc">
-<p>Create movies in local db assuming it does not exist </p>
 
 </div>
 </div>
@@ -266,21 +281,7 @@ false if connection could not be established </dd></dl>
         </tr>
       </table>
 </div><div class="memdoc">
-<p>Prints out all the html contents on main page such as buttons and search </p><dl class="params"><dt>Parameters</dt><dd>
-  <table class="params">
-    <tr><td class="paramname">request</td><td></td></tr>
-    <tr><td class="paramname">response</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
-<dl class="exception"><dt>Exceptions</dt><dd>
-  <table class="exception">
-    <tr><td class="paramname">IOException</td><td></td></tr>
-    <tr><td class="paramname">ServletException</td><td></td></tr>
-    <tr><td class="paramname">ClassNotFoundException</td><td></td></tr>
-  </table>
-  </dd>
-</dl>
+<p>Prints out all the html contents on main page such as buttons and search </p>
 
 </div>
 </div>
