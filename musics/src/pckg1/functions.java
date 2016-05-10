@@ -54,14 +54,14 @@ public class functions {
 		MainServlet.result = MainServlet.statement.executeQuery();
 	}
 	
-	public static void search(String fieldlist, String tablename) throws SQLException{
+	public static void select(String fieldlist, String tablename) throws SQLException{
 		MainServlet.query = "SEARCH " + fieldlist
 				+ "FROM" + tablename +  ";";
 		
 		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
 		MainServlet.result = MainServlet.statement.executeQuery();
 	}
-	public static void search(String fieldlist, String tablename, String condition) throws SQLException{
+	public static void select(String fieldlist, String tablename, String condition) throws SQLException{
 		MainServlet.query = "SEARCH " + fieldlist
 				+ "FROM" + tablename
 				+ "WHERE " + condition +  ";";

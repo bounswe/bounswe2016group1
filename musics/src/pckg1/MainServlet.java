@@ -42,7 +42,7 @@ public class MainServlet extends HttpServlet {
 
     public void run() throws ClassNotFoundException, SQLException{
     	if( pckg1.functions.connect()){
-    		functions.search("*", "table1");
+    		functions.select("*", "table1");
 			
 			while(result.next()){
 				System.out.println(result.getString(1)+" "+result.getString(2));
@@ -64,7 +64,7 @@ public class MainServlet extends HttpServlet {
 					result = statement.executeQuery();
 					
 					while(result.next()){
-						System.out.println(result.getString(1)+" "+result.getString(2));
+						pw.println(result.getString(1)+" "+result.getString(2));
 					}
 					
 				} catch (SQLException e) {e.printStackTrace();}
