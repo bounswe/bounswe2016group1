@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<classpath>
+	<classpathentry kind="src" path="src"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.7"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="C:/Users/KaanBulut/Documents/Spring 2016/CMPE 352/apache-tomcat-7.0.69-windows-x64/apache-tomcat-7.0.69/lib/servlet-api.jar"/>
+	<classpathentry kind="lib" path="C:/Users/KaanBulut/Documents/Spring 2016/CMPE 352/junit-4.12.jar"/>
+	<classpathentry kind="output" path="bin"/>
+</classpath>

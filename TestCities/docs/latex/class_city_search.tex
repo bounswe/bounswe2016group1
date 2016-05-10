@@ -1,0 +1,262 @@
+\hypertarget{class_city_search}{}\section{City\+Search Class Reference}
+\label{class_city_search}\index{City\+Search@{City\+Search}}
+
+
+Servlet for a website on city search.  
+
+
+Inheritance diagram for City\+Search\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_city_search}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+Array\+List$<$ Hash\+Map$<$ String, String $>$ $>$ \hyperlink{class_city_search_aa89f03a8e1e1ba6b4cca39d3a77d0aea}{run\+Query} (String query)
+\item 
+String \hyperlink{class_city_search_ad3169a9a050fb3efcc480eb9d4a31601}{get\+Query\+Body} (Http\+Servlet\+Request request)
+\item 
+Array\+List$<$ Hash\+Map$<$ String, String $>$ $>$ \hyperlink{class_city_search_a79b7b631af176e21aac968101fe4eb0d}{run\+Data\+Query} (Http\+Servlet\+Request request)
+\item 
+String \hyperlink{class_city_search_ae95f20000b6ffd73f58e20841a344c33}{get\+Options} (Http\+Servlet\+Request request)
+\item 
+String \hyperlink{class_city_search_a52cde722fb752e78e377a879d776041d}{get\+Table} (Http\+Servlet\+Request request)
+\item 
+String \hyperlink{class_city_search_a7ebefad5e5a6c895cf2f8bc350779165}{get\+Page\+Menu} (Http\+Servlet\+Request request)
+\item 
+String \hyperlink{class_city_search_ad8fa69bece192ae293c2dd96e614e337}{generate\+H\+T\+ML} (Http\+Servlet\+Request request)
+\item 
+void \hyperlink{class_city_search_ab392666fdc0948b40d90af4715429451}{init} ()  throws Servlet\+Exception 
+\item 
+void \hyperlink{class_city_search_a9e1fc3bb51d58588be7d55c80d97bc82}{do\+Get} (Http\+Servlet\+Request request, Http\+Servlet\+Response response)  throws Servlet\+Exception, I\+O\+Exception 
+\item 
+void \hyperlink{class_city_search_a1b194c808d33eb362a07eb4a87a6995f}{do\+Post} (Http\+Servlet\+Request request, Http\+Servlet\+Response response)  throws Servlet\+Exception, I\+O\+Exception 
+\item 
+void \hyperlink{class_city_search_a4fcacbf97c43741eff5acf8dd091f495}{destroy} ()
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Servlet for a website on city search. 
+
+This servlet creates a webpage where you can search cities by name, country and population. It also allows results to be saved to a database.
+
+\begin{DoxyVersion}{Version}
+1.\+0 
+\end{DoxyVersion}
+\begin{DoxyAuthor}{Author}
+Kaan Bulut Tekelioglu 
+\end{DoxyAuthor}
+\begin{DoxyDate}{Date}
+May 2016 
+\end{DoxyDate}
+
+
+\subsection{Member Function Documentation}
+\index{City\+Search@{City\+Search}!destroy@{destroy}}
+\index{destroy@{destroy}!City\+Search@{City\+Search}}
+\subsubsection[{\texorpdfstring{destroy()}{destroy()}}]{\setlength{\rightskip}{0pt plus 5cm}void City\+Search.\+destroy (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}\hypertarget{class_city_search_a4fcacbf97c43741eff5acf8dd091f495}{}\label{class_city_search_a4fcacbf97c43741eff5acf8dd091f495}
+Disconnects from the database when the servlet is destroyed. \index{City\+Search@{City\+Search}!do\+Get@{do\+Get}}
+\index{do\+Get@{do\+Get}!City\+Search@{City\+Search}}
+\subsubsection[{\texorpdfstring{do\+Get(\+Http\+Servlet\+Request request, Http\+Servlet\+Response response)}{doGet(HttpServletRequest request, HttpServletResponse response)}}]{\setlength{\rightskip}{0pt plus 5cm}void City\+Search.\+do\+Get (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request, }
+\item[{Http\+Servlet\+Response}]{response}
+\end{DoxyParamCaption}
+) throws Servlet\+Exception, I\+O\+Exception}\hypertarget{class_city_search_a9e1fc3bb51d58588be7d55c80d97bc82}{}\label{class_city_search_a9e1fc3bb51d58588be7d55c80d97bc82}
+Prints the H\+T\+ML code when a G\+ET request is made.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & 
+\begin{DoxyItemize}
+\item The H\+T\+TP request. 
+\end{DoxyItemize}\\
+\hline
+{\em response} & 
+\begin{DoxyItemize}
+\item The H\+T\+TP response of this servlet. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\index{City\+Search@{City\+Search}!do\+Post@{do\+Post}}
+\index{do\+Post@{do\+Post}!City\+Search@{City\+Search}}
+\subsubsection[{\texorpdfstring{do\+Post(\+Http\+Servlet\+Request request, Http\+Servlet\+Response response)}{doPost(HttpServletRequest request, HttpServletResponse response)}}]{\setlength{\rightskip}{0pt plus 5cm}void City\+Search.\+do\+Post (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request, }
+\item[{Http\+Servlet\+Response}]{response}
+\end{DoxyParamCaption}
+) throws Servlet\+Exception, I\+O\+Exception}\hypertarget{class_city_search_a1b194c808d33eb362a07eb4a87a6995f}{}\label{class_city_search_a1b194c808d33eb362a07eb4a87a6995f}
+Writes U\+R\+Ls to database when a P\+O\+ST request is made.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & 
+\begin{DoxyItemize}
+\item The H\+T\+TP request. 
+\end{DoxyItemize}\\
+\hline
+{\em response} & 
+\begin{DoxyItemize}
+\item The H\+T\+TP response of this servlet. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\index{City\+Search@{City\+Search}!generate\+H\+T\+ML@{generate\+H\+T\+ML}}
+\index{generate\+H\+T\+ML@{generate\+H\+T\+ML}!City\+Search@{City\+Search}}
+\subsubsection[{\texorpdfstring{generate\+H\+T\+M\+L(\+Http\+Servlet\+Request request)}{generateHTML(HttpServletRequest request)}}]{\setlength{\rightskip}{0pt plus 5cm}String City\+Search.\+generate\+H\+T\+ML (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request}
+\end{DoxyParamCaption}
+)}\hypertarget{class_city_search_ad8fa69bece192ae293c2dd96e614e337}{}\label{class_city_search_ad8fa69bece192ae293c2dd96e614e337}
+Generates the H\+T\+ML code for the entire page.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & 
+\begin{DoxyItemize}
+\item The H\+T\+TP request. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The H\+T\+ML code the entire page. 
+\end{DoxyReturn}
+\index{City\+Search@{City\+Search}!get\+Options@{get\+Options}}
+\index{get\+Options@{get\+Options}!City\+Search@{City\+Search}}
+\subsubsection[{\texorpdfstring{get\+Options(\+Http\+Servlet\+Request request)}{getOptions(HttpServletRequest request)}}]{\setlength{\rightskip}{0pt plus 5cm}String City\+Search.\+get\+Options (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request}
+\end{DoxyParamCaption}
+)}\hypertarget{class_city_search_ae95f20000b6ffd73f58e20841a344c33}{}\label{class_city_search_ae95f20000b6ffd73f58e20841a344c33}
+Creates the H\+T\+ML code for a dropdown menu for sort selection.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & 
+\begin{DoxyItemize}
+\item The H\+T\+TP request. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The H\+T\+ML code for the dropdown menu. 
+\end{DoxyReturn}
+\index{City\+Search@{City\+Search}!get\+Page\+Menu@{get\+Page\+Menu}}
+\index{get\+Page\+Menu@{get\+Page\+Menu}!City\+Search@{City\+Search}}
+\subsubsection[{\texorpdfstring{get\+Page\+Menu(\+Http\+Servlet\+Request request)}{getPageMenu(HttpServletRequest request)}}]{\setlength{\rightskip}{0pt plus 5cm}String City\+Search.\+get\+Page\+Menu (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request}
+\end{DoxyParamCaption}
+)}\hypertarget{class_city_search_a7ebefad5e5a6c895cf2f8bc350779165}{}\label{class_city_search_a7ebefad5e5a6c895cf2f8bc350779165}
+Creates the H\+T\+ML code for a table to select pages of the query result.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & 
+\begin{DoxyItemize}
+\item The H\+T\+TP request. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The H\+T\+ML code for a table to select pages. 
+\end{DoxyReturn}
+\index{City\+Search@{City\+Search}!get\+Query\+Body@{get\+Query\+Body}}
+\index{get\+Query\+Body@{get\+Query\+Body}!City\+Search@{City\+Search}}
+\subsubsection[{\texorpdfstring{get\+Query\+Body(\+Http\+Servlet\+Request request)}{getQueryBody(HttpServletRequest request)}}]{\setlength{\rightskip}{0pt plus 5cm}String City\+Search.\+get\+Query\+Body (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request}
+\end{DoxyParamCaption}
+)}\hypertarget{class_city_search_ad3169a9a050fb3efcc480eb9d4a31601}{}\label{class_city_search_ad3169a9a050fb3efcc480eb9d4a31601}
+Runs the body of the data extraction query for city search. It does filtering in the query according to parameters in request.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & 
+\begin{DoxyItemize}
+\item The H\+T\+TP request. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The body of the query. 
+\end{DoxyReturn}
+\index{City\+Search@{City\+Search}!get\+Table@{get\+Table}}
+\index{get\+Table@{get\+Table}!City\+Search@{City\+Search}}
+\subsubsection[{\texorpdfstring{get\+Table(\+Http\+Servlet\+Request request)}{getTable(HttpServletRequest request)}}]{\setlength{\rightskip}{0pt plus 5cm}String City\+Search.\+get\+Table (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request}
+\end{DoxyParamCaption}
+)}\hypertarget{class_city_search_a52cde722fb752e78e377a879d776041d}{}\label{class_city_search_a52cde722fb752e78e377a879d776041d}
+Creates the H\+T\+ML code for the results table.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & 
+\begin{DoxyItemize}
+\item The H\+T\+TP request. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The H\+T\+ML code for the results table. 
+\end{DoxyReturn}
+\index{City\+Search@{City\+Search}!init@{init}}
+\index{init@{init}!City\+Search@{City\+Search}}
+\subsubsection[{\texorpdfstring{init()}{init()}}]{\setlength{\rightskip}{0pt plus 5cm}void City\+Search.\+init (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+) throws Servlet\+Exception}\hypertarget{class_city_search_ab392666fdc0948b40d90af4715429451}{}\label{class_city_search_ab392666fdc0948b40d90af4715429451}
+Initializes the database connection. \index{City\+Search@{City\+Search}!run\+Data\+Query@{run\+Data\+Query}}
+\index{run\+Data\+Query@{run\+Data\+Query}!City\+Search@{City\+Search}}
+\subsubsection[{\texorpdfstring{run\+Data\+Query(\+Http\+Servlet\+Request request)}{runDataQuery(HttpServletRequest request)}}]{\setlength{\rightskip}{0pt plus 5cm}Array\+List$<$Hash\+Map$<$String, String$>$ $>$ City\+Search.\+run\+Data\+Query (
+\begin{DoxyParamCaption}
+\item[{Http\+Servlet\+Request}]{request}
+\end{DoxyParamCaption}
+)}\hypertarget{class_city_search_a79b7b631af176e21aac968101fe4eb0d}{}\label{class_city_search_a79b7b631af176e21aac968101fe4eb0d}
+Runs the query for data extraction. It sorts and pages data according to parameters.
+
+
+\begin{DoxyParams}{Parameters}
+{\em request} & 
+\begin{DoxyItemize}
+\item The H\+T\+TP request. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result list for the data query. 
+\end{DoxyReturn}
+\index{City\+Search@{City\+Search}!run\+Query@{run\+Query}}
+\index{run\+Query@{run\+Query}!City\+Search@{City\+Search}}
+\subsubsection[{\texorpdfstring{run\+Query(\+String query)}{runQuery(String query)}}]{\setlength{\rightskip}{0pt plus 5cm}Array\+List$<$Hash\+Map$<$String, String$>$ $>$ City\+Search.\+run\+Query (
+\begin{DoxyParamCaption}
+\item[{String}]{query}
+\end{DoxyParamCaption}
+)}\hypertarget{class_city_search_aa89f03a8e1e1ba6b4cca39d3a77d0aea}{}\label{class_city_search_aa89f03a8e1e1ba6b4cca39d3a77d0aea}
+Runs a given query in wikidata. The query must be valid. Returns an Array\+List of Hashmaps, where each row is a result, and column names are keys to the maps.
+
+
+\begin{DoxyParams}{Parameters}
+{\em query} & 
+\begin{DoxyItemize}
+\item The query to be run. 
+\end{DoxyItemize}\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The result list. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+Kaan\+Bulut/workspace/\+Test\+Cities/src/\hyperlink{_city_search_8java}{City\+Search.\+java}\end{DoxyCompactItemize}
