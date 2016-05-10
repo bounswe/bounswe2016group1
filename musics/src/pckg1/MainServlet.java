@@ -37,41 +37,49 @@ public class MainServlet extends HttpServlet {
      */
     public MainServlet() {
         super();
-        // TODO Auto-generated constructor stub
     }
 
-    public void run() throws ClassNotFoundException, SQLException{
-    	if( pckg1.functions.connect()){
-    		functions.select("*", "table1");
-			
-			while(result.next()){
-				System.out.println(result.getString(1)+" "+result.getString(2));
-			}
-    	}
-    }
+    
+    
+    
+    
+    
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+     
     
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		PrintWriter pw = response.getWriter();
 		
+		
 		try {
-			if( pckg1.functions.connect()){
-				try {
-					query = "SELECT * FROM table1";
-					statement = conn.prepareStatement(query);
-					result = statement.executeQuery();
-					
-					while(result.next()){
-						pw.println(result.getString(1)+" "+result.getString(2));
-					}
-					
-				} catch (SQLException e) {e.printStackTrace();}
+			if( functions.connect()){
+				functions.select("*", "table1");
+				
+				while(result.next()){
+					pw.println(result.getString(1)+" "+result.getString(2));
+				}
 			}
-		} catch (Exception e) {}
+		} catch (ClassNotFoundException | SQLException e1) {e1.printStackTrace();}
+	
+		
 	}
 
+	// -----------------------------------------------------------
+    // -----------------------------------------------------------
+    // -----------------------------------------------------------
+   
+	
+	
+	
+	
+	
+	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

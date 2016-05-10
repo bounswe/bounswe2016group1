@@ -16,11 +16,11 @@ public class functions {
 		}
 	}
 
-	public static void createtable(String tablename, String field1, String field2) throws SQLException{
+	public static void createtable(String tablename) throws SQLException{
 		MainServlet.query = "CREATE TABLE " + tablename
 				+ "("
-				+ field1 + "varchar(255)"
-				+ field2 + "varchar(255)"
+				+ "f1 varchar(255) , "
+				+ "f2 varchar(255)"
 				+ ");";
 		
 		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
@@ -37,17 +37,17 @@ public class functions {
 	public static void insertrecord(String tablename, String field1, String field2) throws SQLException{
 		MainServlet.query = "INSERT INTO " + tablename
 				+ "VALUES"
-				+ "(" + field1 + field2 + ");";
+				+ "(" + field1 + " , "+ field2 + ");";
 		
 		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
 		MainServlet.result = MainServlet.statement.executeQuery();
 	}
-	public static void deleterecord(String tablename,String targetfield,String recordfield) throws SQLException{
+	public static void deleterecord(String tablename,String fieldname,String recordvalue) throws SQLException{
 		MainServlet.query = "DELETE FROM " + tablename
 				+ "WHERE "
-				+ targetfield
+				+ fieldname
 				+ "="
-				+ recordfield
+				+ recordvalue
 				+ ";";
 		
 		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
