@@ -22,7 +22,7 @@ public class MainServlet extends HttpServlet {
 	static final String USER = "root";
 	static final String PW = "";
 	// static final String DB_URL =
-	public static String DB_URL = "jdbc:mysql://ec2-54-200-141-143.us-west-2.compute.amazonaws.com:3306/mert";
+	public static String DB_URL = "jdbc:mysql://localhost:3306/mert";
 	 //public static String DB_URL = "jdbc:mysql://localhost:3306/mert";
 	static Connection conn = null;
 	static Statement stmt = null;
@@ -106,10 +106,9 @@ public class MainServlet extends HttpServlet {
 		out.println("<title>Movies</title>");
 		out.println("</head>");
 		out.println("<body>");
-		out.println("<form action=\"MainServlet\">");
-		out.println(
-				"<input type=\"submit\" name=\"but1\" method=\"POST\" id=\"f1\" value=\"Movie main subjects that earned most Oscars\">");
-		out.println("</form>");
+
+		out.println("Movies that have won Best Picture in Oscars");
+
 		out.println("<form action=\"UpdateDB\">");
 		out.println("<input type=\"submit\" name=\"but1\" method=\"POST\" id=\"f1\" value=\"Update local DB\">");
 		out.println("</form>");

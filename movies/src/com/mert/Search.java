@@ -116,8 +116,7 @@ public class Search extends HttpServlet {
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 		Comp genreComp = new Comp(map);
 		while (!foundAt.isEmpty()) {
-			String sql = "SELECT `movies`.`count`   FROM `mert`.`movies` WHERE `movies`.`count`=\"" + foundAt.get(0)
-					+ "\"";
+			String sql = "SELECT `movies`.`count`   FROM `mert`.`movies` WHERE `movies`.`genreID`=\"" + foundAt.get(0)+ "\"";
 			try {
 				stmt.executeQuery(sql);
 				ResultSet rs = stmt.executeQuery(sql);
@@ -194,8 +193,8 @@ public class Search extends HttpServlet {
 		out.print("<td>Movie Title</td>");
 		out.print("<td>Main Subject</td>");
 		out.println("</tr>");
-		while (!foundAt.isEmpty()) {
-			Entry<String, Integer> genreEntry = foundAt.firstEntry();
+		ArrayList<String> aList = new ArrayList<>(foundAt.keySet()); 
+		while (!aList.isEmpty()) {
 			String queryString = "PREFIX bd: <http://www.bigdata.com/rdf#> "
 					+ "PREFIX wikibase: <http://wikiba.se/ontology#> "
 					+ "PREFIX wdt: <http://www.wikidata.org/prop/direct/> "
@@ -206,12 +205,12 @@ public class Search extends HttpServlet {
 					+ "				?award wdt:P31 wd:Q19020 . 				"
 					+ "				?awardWork wdt:P31 wd:Q11424 ." + "  				?awardWork p:P166 ?awardStat ."
 					+ "  				?awardStat ps:P166 ?award ."
-					+ "  				?awardWork wdt:P921 ?genreID . filter (?genreID=wd:" +  genreEntry.getKey() + ")"
+					+ "  				?awardWork wdt:P921 ?genreID . filter (?genreID=wd:" +  aList.get(0) + ")"
 					+ "	SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }			" + "	 }";
 			Query query = QueryFactory.create(queryString);
 			QueryExecution qe = QueryExecutionFactory.sparqlService("https://query.wikidata.org/sparql", query);
 			org.apache.jena.query.ResultSet results = qe.execSelect();
-
+			aList.remove(0);
 			/*
 			 * Take all the query results and print them to html.
 			 */
@@ -222,7 +221,7 @@ public class Search extends HttpServlet {
 				out.print("<td>" + UpdateDB.parseGenre(querySolution.get("genreIDLabel").toString()) + "</td>");
 				out.println("</tr>");
 			}
-			foundAt.remove(genreEntry);
+			
 		}
 
 		out.println("</table>");

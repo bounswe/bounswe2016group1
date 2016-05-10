@@ -50,7 +50,7 @@ public class ShowMovies extends HttpServlet {
 		conn=MainServlet.conn;
 		stmt=MainServlet.stmt;
 		ArrayList<String> genresToList = new ArrayList<String>();
-		String sql = "SELECT `entries`.`genreID` FROM `sakila`.`entries`";
+		String sql = "SELECT `entries`.`genreID` FROM `mert`.`entries`";
 		
 		try {
 			stmt.executeQuery(sql);

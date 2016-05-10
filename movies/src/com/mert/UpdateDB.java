@@ -169,9 +169,7 @@ public class UpdateDB extends HttpServlet {
 			out.println("</body>");
 			out.println("</html>");
 			e.printStackTrace();
-		}finally {
-			MainServlet.closeDBConnections();			
-		} 
+		}
 		response.setContentType("text/html");
 		
 		PrintWriter out = response.getWriter();
