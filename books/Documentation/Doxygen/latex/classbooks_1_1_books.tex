@@ -1,0 +1,73 @@
+\hypertarget{classbooks_1_1_books}{}\section{books.\+Books Class Reference}
+\label{classbooks_1_1_books}\index{books.\+Books@{books.\+Books}}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static String \hyperlink{classbooks_1_1_books_ad3d13a869f62cd65a802506f49a80dd6}{get\+Data} (String \+\_\+author, String \+\_\+genre, String \+\_\+book, String \+\_\+series)
+\item 
+static Array\+List$<$ Map$<$ String, String $>$ $>$ \hyperlink{classbooks_1_1_books_a7b554afada1d575adfa93051017c48a1}{filter} (String c\+\_\+name, String c\+\_\+value, Array\+List$<$ Map$<$ String, String $>$$>$ list)
+\item 
+static String {\bfseries save\+Data} (String select\mbox{[}$\,$\mbox{]}, String user\+\_\+name)\hypertarget{classbooks_1_1_books_a89b6f2589616459ea8962b1bef746dea}{}\label{classbooks_1_1_books_a89b6f2589616459ea8962b1bef746dea}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class is used to fetch books from online wikidata database and to select the ones that satisfies some conditions. Conditions are simply satisfying a given author name, book name and genre. It is also used to save the selected data to a database.
+
+\begin{DoxyAuthor}{Author}
+Guneykan Ozgul 2012400090. 
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\index{books\+::\+Books@{books\+::\+Books}!filter@{filter}}
+\index{filter@{filter}!books\+::\+Books@{books\+::\+Books}}
+\subsubsection[{\texorpdfstring{filter(\+String c\+\_\+name, String c\+\_\+value, Array\+List$<$ Map$<$ String, String $>$$>$ list)}{filter(String c_name, String c_value, ArrayList< Map< String, String >> list)}}]{\setlength{\rightskip}{0pt plus 5cm}static Array\+List$<$Map$<$String,String$>$ $>$ books.\+Books.\+filter (
+\begin{DoxyParamCaption}
+\item[{String}]{c\+\_\+name, }
+\item[{String}]{c\+\_\+value, }
+\item[{Array\+List$<$ Map$<$ String, String $>$$>$}]{list}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classbooks_1_1_books_a7b554afada1d575adfa93051017c48a1}{}\label{classbooks_1_1_books_a7b554afada1d575adfa93051017c48a1}
+Selects the data that have given column value in given column name. 
+\begin{DoxyParams}{Parameters}
+{\em c\+\_\+name} & Column Name \\
+\hline
+{\em c\+\_\+value} & Column Value \\
+\hline
+{\em list} & Data to be filtered. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filtered data. 
+\end{DoxyReturn}
+\index{books\+::\+Books@{books\+::\+Books}!get\+Data@{get\+Data}}
+\index{get\+Data@{get\+Data}!books\+::\+Books@{books\+::\+Books}}
+\subsubsection[{\texorpdfstring{get\+Data(\+String \+\_\+author, String \+\_\+genre, String \+\_\+book, String \+\_\+series)}{getData(String _author, String _genre, String _book, String _series)}}]{\setlength{\rightskip}{0pt plus 5cm}static String books.\+Books.\+get\+Data (
+\begin{DoxyParamCaption}
+\item[{String}]{\+\_\+author, }
+\item[{String}]{\+\_\+genre, }
+\item[{String}]{\+\_\+book, }
+\item[{String}]{\+\_\+series}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classbooks_1_1_books_ad3d13a869f62cd65a802506f49a80dd6}{}\label{classbooks_1_1_books_ad3d13a869f62cd65a802506f49a80dd6}
+Fetches the data from the online database and filter. 
+\begin{DoxyParams}{Parameters}
+{\em \+\_\+author} & Author Name of the book. \\
+\hline
+{\em \+\_\+genre} & Genre of the book. \\
+\hline
+{\em \+\_\+book} & Name of the book. \\
+\hline
+{\em \+\_\+series} & Series of the book. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Data in html format. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+C\+A\+S\+P\+E\+R/git/bounswe2016group1/books/src/books/Books.\+java\end{DoxyCompactItemize}

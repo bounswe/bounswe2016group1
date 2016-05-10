@@ -22,8 +22,9 @@ public class DBTest {
 	@Test
 	public void testAddTable() {
 		//Assuming that the table does not exist.
+		
 		assertNotNull(DB.addTable("test"));
-	
+		
 	}
 
 	@Test

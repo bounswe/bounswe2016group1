@@ -1,0 +1,120 @@
+\hypertarget{classbooks_1_1_d_b}{}\section{books.\+DB Class Reference}
+\label{classbooks_1_1_d_b}\index{books.\+DB@{books.\+DB}}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static int \hyperlink{classbooks_1_1_d_b_a40a94e5d04d211dee9aafe54cdcb0791}{create\+Database} ()
+\item 
+static java.\+sql.\+Connection \hyperlink{classbooks_1_1_d_b_a9ded2a708362453e3dd95d949a8eb91c}{connect} ()
+\item 
+static java.\+sql.\+Connection \hyperlink{classbooks_1_1_d_b_afb2e7049a5da6cda4903e1422173772c}{add\+Table} (String table)
+\item 
+static int \hyperlink{classbooks_1_1_d_b_ae00b2da9eadd845bdc7b84b95093cf2d}{delete\+All} (String user\+\_\+name)
+\item 
+static String \hyperlink{classbooks_1_1_d_b_a5ea1a793f51f76b1cfbcd6f884b88b4e}{print\+All} (String user\+\_\+name)
+\item 
+static int \hyperlink{classbooks_1_1_d_b_ab97f617eea63a62f85204716df516524}{add} (String user\+\_\+name, String book\+\_\+name, String author, String series, String date, String genre)
+\end{DoxyCompactItemize}
+
+
+\subsection{Member Function Documentation}
+\index{books\+::\+DB@{books\+::\+DB}!add@{add}}
+\index{add@{add}!books\+::\+DB@{books\+::\+DB}}
+\subsubsection[{\texorpdfstring{add(\+String user\+\_\+name, String book\+\_\+name, String author, String series, String date, String genre)}{add(String user_name, String book_name, String author, String series, String date, String genre)}}]{\setlength{\rightskip}{0pt plus 5cm}static int books.\+D\+B.\+add (
+\begin{DoxyParamCaption}
+\item[{String}]{user\+\_\+name, }
+\item[{String}]{book\+\_\+name, }
+\item[{String}]{author, }
+\item[{String}]{series, }
+\item[{String}]{date, }
+\item[{String}]{genre}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classbooks_1_1_d_b_ab97f617eea63a62f85204716df516524}{}\label{classbooks_1_1_d_b_ab97f617eea63a62f85204716df516524}
+Add new record to db. 
+\begin{DoxyParams}{Parameters}
+{\em user\+\_\+name} & User Name \\
+\hline
+{\em book\+\_\+name} & Book Name \\
+\hline
+{\em author} & Author \\
+\hline
+{\em series} & Series \\
+\hline
+{\em date} & Date \\
+\hline
+{\em genre} & Genre \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether add is successful or not. 
+\end{DoxyReturn}
+\index{books\+::\+DB@{books\+::\+DB}!add\+Table@{add\+Table}}
+\index{add\+Table@{add\+Table}!books\+::\+DB@{books\+::\+DB}}
+\subsubsection[{\texorpdfstring{add\+Table(\+String table)}{addTable(String table)}}]{\setlength{\rightskip}{0pt plus 5cm}static java.\+sql.\+Connection books.\+D\+B.\+add\+Table (
+\begin{DoxyParamCaption}
+\item[{String}]{table}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classbooks_1_1_d_b_afb2e7049a5da6cda4903e1422173772c}{}\label{classbooks_1_1_d_b_afb2e7049a5da6cda4903e1422173772c}
+Add new table to db. 
+\begin{DoxyParams}{Parameters}
+{\em table} & Table name. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether the table is created succesfully. 
+\end{DoxyReturn}
+\index{books\+::\+DB@{books\+::\+DB}!connect@{connect}}
+\index{connect@{connect}!books\+::\+DB@{books\+::\+DB}}
+\subsubsection[{\texorpdfstring{connect()}{connect()}}]{\setlength{\rightskip}{0pt plus 5cm}static java.\+sql.\+Connection books.\+D\+B.\+connect (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classbooks_1_1_d_b_a9ded2a708362453e3dd95d949a8eb91c}{}\label{classbooks_1_1_d_b_a9ded2a708362453e3dd95d949a8eb91c}
+Connect to database. \begin{DoxyReturn}{Returns}
+Connection to database. 
+\end{DoxyReturn}
+\index{books\+::\+DB@{books\+::\+DB}!create\+Database@{create\+Database}}
+\index{create\+Database@{create\+Database}!books\+::\+DB@{books\+::\+DB}}
+\subsubsection[{\texorpdfstring{create\+Database()}{createDatabase()}}]{\setlength{\rightskip}{0pt plus 5cm}static int books.\+D\+B.\+create\+Database (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classbooks_1_1_d_b_a40a94e5d04d211dee9aafe54cdcb0791}{}\label{classbooks_1_1_d_b_a40a94e5d04d211dee9aafe54cdcb0791}
+Creates database named book\+DB. \begin{DoxyReturn}{Returns}
+Whether the database is created succesfully or not. 
+\end{DoxyReturn}
+\index{books\+::\+DB@{books\+::\+DB}!delete\+All@{delete\+All}}
+\index{delete\+All@{delete\+All}!books\+::\+DB@{books\+::\+DB}}
+\subsubsection[{\texorpdfstring{delete\+All(\+String user\+\_\+name)}{deleteAll(String user_name)}}]{\setlength{\rightskip}{0pt plus 5cm}static int books.\+D\+B.\+delete\+All (
+\begin{DoxyParamCaption}
+\item[{String}]{user\+\_\+name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classbooks_1_1_d_b_ae00b2da9eadd845bdc7b84b95093cf2d}{}\label{classbooks_1_1_d_b_ae00b2da9eadd845bdc7b84b95093cf2d}
+Delete all records of a given user. 
+\begin{DoxyParams}{Parameters}
+{\em user\+\_\+name} & User Name. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Whether delete is successful or not. 
+\end{DoxyReturn}
+\index{books\+::\+DB@{books\+::\+DB}!print\+All@{print\+All}}
+\index{print\+All@{print\+All}!books\+::\+DB@{books\+::\+DB}}
+\subsubsection[{\texorpdfstring{print\+All(\+String user\+\_\+name)}{printAll(String user_name)}}]{\setlength{\rightskip}{0pt plus 5cm}static String books.\+D\+B.\+print\+All (
+\begin{DoxyParamCaption}
+\item[{String}]{user\+\_\+name}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [static]}}\hypertarget{classbooks_1_1_d_b_a5ea1a793f51f76b1cfbcd6f884b88b4e}{}\label{classbooks_1_1_d_b_a5ea1a793f51f76b1cfbcd6f884b88b4e}
+Return previous data of a user as a html string. 
+\begin{DoxyParams}{Parameters}
+{\em user\+\_\+name} & User Name. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Saved data in html format. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+C\+:/\+Users/\+C\+A\+S\+P\+E\+R/git/bounswe2016group1/books/src/books/D\+B.\+java\end{DoxyCompactItemize}

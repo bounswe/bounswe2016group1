@@ -6,7 +6,7 @@
 <% 
 
 String select[]=request.getParameterValues("id");
-out.println("Selected data is saved in a database named 'books' and in a table 'book'");
+out.println("Selected data is saved in a database named 'bookDB' and in a table 'book'");
 out.println("Current data is as follows:");
 
 
