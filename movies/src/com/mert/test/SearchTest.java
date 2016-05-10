@@ -1,4 +1,4 @@
-package com.mert;
+package com.mert.test;
 
 import java.io.IOException;
 import java.io.PrintWriter;

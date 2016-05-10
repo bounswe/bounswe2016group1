@@ -8,6 +8,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+import java.util.Set;
+import java.util.TreeMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -22,9 +29,11 @@ import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 
 /**
- * Creates an arraylist of arraylists that hold Strings( i.e 2D String holder data structures) 
- * a movie subject from db is split into its words and are inserted into the arraylist.
- *  @author Mert
+ * Creates an arraylist of arraylists that hold Strings( i.e 2D String holder
+ * data structures) a movie subject from db is split into its words and are
+ * inserted into the arraylist.
+ * 
+ * @author Mert
  */
 @WebServlet("/Search")
 public class Search extends HttpServlet {
@@ -66,7 +75,7 @@ public class Search extends HttpServlet {
 		ArrayList<ArrayList<String>> db = new ArrayList<ArrayList<String>>();
 		ArrayList<String> keywords;
 		String searchTerm = request.getParameter("pid");
-		String sql = "SELECT `movies`.`genreID` ,  `movies`.`genre`  FROM `sakila`.`movies`";
+		String sql = "SELECT `movies`.`genreID` ,  `movies`.`genre`  FROM `mert`.`movies`";
 		try {
 			stmt.executeQuery(sql);
 			ResultSet rs = stmt.executeQuery(sql);
@@ -91,25 +100,56 @@ public class Search extends HttpServlet {
 			out.println("</body>");
 			out.println("</html>");
 			return;
-		} else
-			displayResults(foundAt, out);
+		}  
+			
 
-		try {
-			stmt.close();
-			conn.close();
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		TreeMap<String, Integer> sorted_map;
+		sorted_map = sortResults(foundAt);
+		displayResults(sorted_map, out);
+		MainServlet.closeDBConnections();
 
 	}
-/**
- * The function then compares each word for a match with the searched term. If a match is found its main subject ID is saved to results.
- * It is case sensitive and can not handle small typos.
- * @param db Named as it holds the info from the database to be searched.
- * @param searchTerm Entered 
- * @return list of IDs of subjects
- */
+
+	public TreeMap<String, Integer> sortResults(ArrayList<String> foundAt) {
+		MainServlet.connectToDB();
+		conn = MainServlet.conn;
+		stmt = MainServlet.stmt;
+
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		Comp genreComp = new Comp(map);
+		while (!foundAt.isEmpty()) {
+			String sql = "SELECT `movies`.`count`   FROM `mert`.`movies` WHERE `movies`.`count`=\"" + foundAt.get(0)
+					+ "\"";
+			try {
+				stmt.executeQuery(sql);
+				ResultSet rs = stmt.executeQuery(sql);
+				while (rs.next()) {
+					map.put(foundAt.get(0), rs.getInt("count"));
+				}
+				foundAt.remove(0);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		TreeMap<String, Integer> sorted_map = new TreeMap<String, Integer>(genreComp);
+		sorted_map.putAll(map);
+		
+		MainServlet.closeDBConnections();
+		return sorted_map;
+	}
+
+	/**
+	 * The function then compares each word for a match with the searched term.
+	 * If a match is found its main subject ID is saved to results. It is case
+	 * sensitive and can not handle small typos.
+	 * 
+	 * @param db
+	 *            Named as it holds the info from the database to be searched.
+	 * @param searchTerm
+	 *            Entered
+	 * @return list of IDs of subjects
+	 */
 	public ArrayList<String> searchArrayList(ArrayList<ArrayList<String>> db, String searchTerm) {
 		String ID = null;
 		ArrayList<String> results = new ArrayList<String>();
@@ -120,25 +160,31 @@ public class Search extends HttpServlet {
 			}
 			while (!db.get(0).isEmpty()) {
 				if (searchTerm.equals(db.get(0).get(0))) {
-					results.add(ID);					
+					results.add(ID);
 				}
 				db.get(0).remove(0);
 			}
 			db.remove(0);
 		}
+
 		return results;
 
 	}
-/**
- * Receives results of search from the searchArrayList function as an ArrayList.
- * Queries wikidata.org for movies with the related Main Subjects that were found in search.
- * Lastly prints results of wikidata query to html.
- * @param foundAt List of search results
- * @param out PrintWriter object used to print to html.
- */
-	public void displayResults(ArrayList<String> foundAt, PrintWriter out) {
 
-	
+	/**
+	 * Receives results of search from the searchArrayList function as an
+	 * ArrayList. Queries wikidata.org for movies with the related Main Subjects
+	 * that were found in search. Lastly prints results of wikidata query to
+	 * html.
+	 * 
+	 * @param foundAt
+	 *            List of search results
+	 * @param out
+	 *            PrintWriter object used to print to html.
+	 */
+	public void displayResults(TreeMap<String, Integer> foundAt, PrintWriter out) {
+		
+
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");
 		out.println("<head>");
@@ -151,6 +197,7 @@ public class Search extends HttpServlet {
 		out.print("<td>Main Subject</td>");
 		out.println("</tr>");
 		while (!foundAt.isEmpty()) {
+			Entry<String, Integer> genreEntry = foundAt.firstEntry();
 			String queryString = "PREFIX bd: <http://www.bigdata.com/rdf#> "
 					+ "PREFIX wikibase: <http://wikiba.se/ontology#> "
 					+ "PREFIX wdt: <http://www.wikidata.org/prop/direct/> "
@@ -161,13 +208,15 @@ public class Search extends HttpServlet {
 					+ "				?award wdt:P31 wd:Q19020 . 				"
 					+ "				?awardWork wdt:P31 wd:Q11424 ." + "  				?awardWork p:P166 ?awardStat ."
 					+ "  				?awardStat ps:P166 ?award ."
-					+ "  				?awardWork wdt:P921 ?genreID . filter (?genreID=wd:" + foundAt.get(0) + ")"
+					+ "  				?awardWork wdt:P921 ?genreID . filter (?genreID=wd:" +  genreEntry.getKey() + ")"
 					+ "	SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }			" + "	 }";
 			Query query = QueryFactory.create(queryString);
-			// Execute the query and obtain results
 			QueryExecution qe = QueryExecutionFactory.sparqlService("https://query.wikidata.org/sparql", query);
 			org.apache.jena.query.ResultSet results = qe.execSelect();
 
+			/*
+			 * Take all the query results and print them to html.
+			 */
 			while (results.hasNext()) {
 				QuerySolution querySolution = results.next();
 				out.println("<tr>");
@@ -175,12 +224,28 @@ public class Search extends HttpServlet {
 				out.print("<td>" + UpdateDB.parseGenre(querySolution.get("genreIDLabel").toString()) + "</td>");
 				out.println("</tr>");
 			}
-			foundAt.remove(0);
+			foundAt.remove(genreEntry);
 		}
 
 		out.println("</table>");
 		out.println("</body>");
 		out.println("</html>");
 
+	}
+
+	class Comp implements Comparator<String> {
+		Map<String, Integer> base;
+
+		public Comp(Map<String, Integer> base) {
+			this.base = base;
+		}
+
+		public int compare(String a, String b) {
+			if (base.get(a) >= base.get(b)) {
+				return -1;
+			} else {
+				return 1;
+			}
+		}
 	}
 }

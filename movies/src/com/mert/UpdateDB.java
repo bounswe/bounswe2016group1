@@ -28,8 +28,6 @@ import org.apache.jena.query.ResultSetFormatter;
 @WebServlet("/UpdateDB")
 public class UpdateDB extends HttpServlet {
 	
-	// static final String DB_URL =
-	// "jdbc:mysql://ec2-54-191-203-200.us-west-2.compute.amazonaws.com:3306/devs";
 	Connection conn = null;
 	Statement stmt = null;
 	String sql = null;
@@ -39,7 +37,7 @@ public class UpdateDB extends HttpServlet {
 	 * @param s String to be parsed
 	 * @return count as integer
 	 */
-	public int parseCount(String s) {
+	public static int parseCount(String s) {
 		int iend = s.indexOf("^");
 		String subString = null;
 		if (iend != -1)
@@ -66,7 +64,7 @@ public class UpdateDB extends HttpServlet {
 	 * @param s String to be parsed
 	 * @return ID as string i.e Q342
 	 */
-	public String parseLink(String s) {
+	public static String parseLink(String s) {
 		String[] parts = s.split("/");
 		String lastWord = parts[parts.length - 1];
 		return lastWord;
@@ -84,7 +82,7 @@ public class UpdateDB extends HttpServlet {
 			MainServlet.connectToDB();
 			conn = MainServlet.conn;
 			stmt = MainServlet.stmt;
-			sql = "TRUNCATE `sakila`.`movies`;";
+			sql = "TRUNCATE `mert`.`movies`;";
 
 			stmt.executeUpdate(sql);
 
@@ -145,36 +143,39 @@ public class UpdateDB extends HttpServlet {
 		}
 		truncateDB(); //flush db first
 		try {
+			
 			MainServlet.connectToDB();
 			conn = MainServlet.conn;
 			stmt = MainServlet.stmt;
+			/**
+			 * Insert into movies into the local fresh db
+			 */
 			while (!genreList.isEmpty()) {
-				sql = "INSERT INTO `sakila`.`movies` (`genre`,`count`,`genreID`) "
+				sql = "INSERT INTO `mert`.`movies` (`genre`,`count`,`genreID`) "
 						+ "VALUES(\"" + genreList.get(0).genre + "\","+ genreList.get(0).count +",\"" + genreList.get(0).genreID + "\");";
 				genreList.remove(0);
 				stmt.executeUpdate(sql);
 			}
-		} catch (SQLException se) {
-			// Handle errors for JDBC
-			se.printStackTrace();
-		} catch (Exception e) {
-			// Handle errors for Class.forName
+		} catch (Exception e) {	
+			PrintWriter out = response.getWriter();
+			out.println("<!DOCTYPE html>");
+			out.println("<html>");
+			out.println("<head>");
+			out.println("<title>Movies</title>");
+			out.println("</head>");
+			out.println("<body>");
+			out.println("Update failed");
+			out.println("</body>");
+			out.println("</html>");
+			out.println("</center>");
+			out.println("</body>");
+			out.println("</html>");
 			e.printStackTrace();
-		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			} // end finally try
-		} // end try
+		}finally {
+			MainServlet.closeDBConnections();			
+		} 
 		response.setContentType("text/html");
+		
 		PrintWriter out = response.getWriter();
 		out.println("<!DOCTYPE html>");
 		out.println("<html>");

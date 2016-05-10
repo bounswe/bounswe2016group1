@@ -21,11 +21,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/ShowEntries")
 public class ShowEntries extends HttpServlet {
-	static final String USER = "root";
-	static final String PW = "1234";
-	// static final String DB_URL =
-	// "jdbc:mysql://ec2-54-191-203-200.us-west-2.compute.amazonaws.com:3306/devs";
-	static final String DB_URL = "jdbc:mysql://localhost:3306/sakila";
+
 	Connection conn = null;
 	Statement stmt = null;
 	String sql = null;
@@ -61,7 +57,7 @@ public class ShowEntries extends HttpServlet {
 			out.println("<body>");
 			out.println("<table border=\"1\">");
 			
-			String sql = "SELECT `entries`.`genreID` FROM `sakila`.`entries`";
+			String sql = "SELECT `entries`.`genreID` FROM `mert`.`entries`";
 
 			stmt.executeQuery(sql);
 			ResultSet rs = stmt.executeQuery(sql);
@@ -80,25 +76,12 @@ public class ShowEntries extends HttpServlet {
 			conn.close();
 
 		} catch (SQLException se) {
-			// Handle errors for JDBC
 			se.printStackTrace();
 		} catch (Exception e) {
-			// Handle errors for Class.forName
 			e.printStackTrace();
 		} finally {
-			// finally block used to close resources
-			try {
-				if (stmt != null)
-					stmt.close();
-			} catch (SQLException se2) {
-			} // nothing we can do
-			try {
-				if (conn != null)
-					conn.close();
-			} catch (SQLException se) {
-				se.printStackTrace();
-			} // end finally try
-		} // end try
+			MainServlet.closeDBConnections();
+			}
 
 	}
 

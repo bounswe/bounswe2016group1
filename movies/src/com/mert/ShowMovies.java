@@ -91,7 +91,6 @@ public class ShowMovies extends HttpServlet {
 					+ "  				?awardWork wdt:P921 ?genreID . filter (?genreID=wd:" + genresToList.get(0) + ")"
 					+ "	SERVICE wikibase:label { bd:serviceParam wikibase:language \"en\". }			" + "	 }";
 			Query query = QueryFactory.create(queryString);
-			// Execute the query and obtain results
 			QueryExecution qe = QueryExecutionFactory.sparqlService("https://query.wikidata.org/sparql", query);
 			org.apache.jena.query.ResultSet results = qe.execSelect();
 

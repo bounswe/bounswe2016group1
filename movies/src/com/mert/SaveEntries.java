@@ -21,11 +21,6 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet("/SaveEntries")
 public class SaveEntries extends HttpServlet {
-	static final String USER = "root";
-	static final String PW = "1234";
-	// static final String DB_URL =
-	// "jdbc:mysql://ec2-54-191-203-200.us-west-2.compute.amazonaws.com:3306/devs";
-	static final String DB_URL = "jdbc:mysql://localhost:3306/sakila";
 	Connection conn = null;
 	Statement stmt = null;
 	String sql = null;
@@ -73,7 +68,7 @@ public class SaveEntries extends HttpServlet {
 			if (IDs != null) {
 				for (int i = 0; i < IDs.length; i++) {
 					try {
-						sql = "INSERT INTO `sakila`.`entries` (`genreID`) VALUES(\"" + IDs[i] + "\")";
+						sql = "INSERT INTO `mert`.`entries` (`genreID`) VALUES(\"" + IDs[i] + "\")";
 						stmt.executeUpdate(sql);
 					} catch (SQLException e) {
 						if (e.getErrorCode() == MYSQL_DUPLICATE_PK) {
@@ -90,7 +85,7 @@ public class SaveEntries extends HttpServlet {
 
 			MainServlet.connectToDB();
 
-			String sql = "SELECT `entries`.`genreID` FROM `sakila`.`entries`";
+			String sql = "SELECT `entries`.`genreID` FROM `mert`.`entries`";
 
 			out.println("<table border=\"1\">");
 			ResultSet rs = stmt.executeQuery(sql);
@@ -105,7 +100,9 @@ public class SaveEntries extends HttpServlet {
 			out.println("</html>");
 		} catch (Exception e) {
 
-		}
+		}finally {
+			MainServlet.closeDBConnections();
+			}
 	}
 
 }

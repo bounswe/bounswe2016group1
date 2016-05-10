@@ -1,4 +1,6 @@
-package com.mert;
+package com.mert.test;
+
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -7,7 +9,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,29 +21,35 @@ import org.apache.jena.query.QueryExecutionFactory;
 import org.apache.jena.query.QueryFactory;
 import org.apache.jena.query.QuerySolution;
 import org.apache.jena.query.ResultSetFormatter;
+import org.junit.Test;
+
+import com.mert.UpdateDB;
 
 /**
-* Tests for UpdateDB class
-*/
-@Test 
-public class UpdateDBTest  {
+ * Tests for UpdateDB class
+ */
 
-	public void parseCountTest(){
+public class UpdateDBTest {
 
-		assertEquals(parseCount("123^456"),parseCount("123");
-		assertEquals(parseCount("67^stringfortest^test"),67);
+	@Test
+	public void parseCountTest() {
+
+		assertEquals(UpdateDB.parseCount("123^456"), UpdateDB.parseCount("123"));
+		assertEquals(UpdateDB.parseCount("67^stringfortest^test"), 67);
 	}
 
-		public void parseGenreTest(){
+	@Test
+	public void parseGenreTest() {
 
-		assertEquals(parseGenre("123@456"),parseGenre("123");
-		assertEquals(parseGenre("stringfortest^test@asd"),"stringfortest^test");
-
+		assertEquals(UpdateDB.parseGenre("123@456"), UpdateDB.parseGenre("123"));
+		assertEquals(UpdateDB.parseGenre("stringfortest^test@asd"), "stringfortest^test");
 
 	}
-		public String parseLinkTest(String s) {
-		assertEquals(parseLink("asd/ada/test/test2","test2");
 
-		}
+	@Test
+	public void parseLinkTest(String s) {
+		assertEquals((UpdateDB.parseLink("asd/ada/test/test2")), "test2");
+
+	}
 
 }

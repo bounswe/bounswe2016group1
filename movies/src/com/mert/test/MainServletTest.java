@@ -1,4 +1,6 @@
-package com.mert;
+package com.mert.test;
+
+import static org.junit.Assert.*;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -9,6 +11,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Iterator;
+import org.junit.*;
+
+import com.mert.MainServlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -35,8 +40,9 @@ public class MainServletTest  {
 	* Test database connector
 	*/
 	public void connectToDBTest(){
-		assertNotNull(MainServlet.connectToDB);
+
+		assertNotNull(MainServlet.connectToDB());
 		MainServlet.DB_URL="non_existing_sql_db_url_for_test";
-		assertNull(MainServlet.connectToDB();
+		assertNull(MainServlet.connectToDB());
 	}
 }
