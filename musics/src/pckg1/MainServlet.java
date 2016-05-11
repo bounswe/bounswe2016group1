@@ -127,7 +127,9 @@ public class MainServlet extends HttpServlet {
 					String key1 = keys.substring(first, last);
 					
 					if(!key1.equals("")){
-						functions.marker(key1);
+						try {
+							functions.marker(key1);
+						} catch (SQLException e) {e.printStackTrace();}
 					}
 					first = last+1;
 				}
@@ -135,7 +137,9 @@ public class MainServlet extends HttpServlet {
 			String key1 = keys.substring(first);
 			
 			if(!key1.equals("")){
-				functions.marker(key1);
+				try {
+					functions.marker(key1);
+				} catch (SQLException e) {e.printStackTrace();}
 			}
 			
 			// ----------------------------------------------------
