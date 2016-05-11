@@ -16,6 +16,26 @@ public class functions {
 		MainServlet.result = MainServlet.statement.executeQuery();
 	}
 
+	public static void marker(String keyword) {
+		
+		
+	}
+	
+	public static void resetmark() {
+		// TODO Auto-generated method stub
+		
+	}
+	
+	public static String display(int num) {
+
+		return null;
+	}
+	
+	
+	
+	
+	
+	
 	public static void createtable(String tablename) throws SQLException{
 		MainServlet.query = "CREATE TABLE " + tablename
 				+ "("
@@ -69,5 +89,11 @@ public class functions {
 		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
 		MainServlet.result = MainServlet.statement.executeQuery();
 	}
+
+	
+
+	
+
+	
 	
 }

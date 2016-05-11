@@ -110,6 +110,8 @@ public class MainServlet extends HttpServlet {
 			functions.connect();
 		} catch (ClassNotFoundException | SQLException e) {	e.printStackTrace();}
 		
+		functions.resetmark();
+		
 		// ----------------------------------------------------
 		
 		String keys = request.getParameter("keyword");
@@ -125,7 +127,7 @@ public class MainServlet extends HttpServlet {
 					String key1 = keys.substring(first, last);
 					
 					if(!key1.equals("")){
-						pw.println(key1+" --");
+						functions.marker(key1);
 					}
 					first = last+1;
 				}
@@ -133,12 +135,20 @@ public class MainServlet extends HttpServlet {
 			String key1 = keys.substring(first);
 			
 			if(!key1.equals("")){
-				pw.println(key1+"--");
+				functions.marker(key1);
 			}
+			
+			// ----------------------------------------------------
+			
+			// DISPLAY
+			int num =20;
+			pw.println(functions.display(num));
+
+			// ----------------------------------------------------
+		
 		}
 		
-		// ----------------------------------------------------
-	
+		
 		pw.println("</body>");
 		pw.println("</html>");
 		
