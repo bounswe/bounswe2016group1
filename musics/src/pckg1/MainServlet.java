@@ -31,6 +31,8 @@ public class MainServlet extends HttpServlet {
 	static ResultSet result = null;
 	static PreparedStatement statement = null;
 	
+	static int listlength = 20;
+	
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -103,7 +105,7 @@ public class MainServlet extends HttpServlet {
 		pw.println("<input  type=\"submit\" value=\"Search\">");
 		
 		pw.println("</form>");
-		
+				
 		// ----------------------------------------------------
 		
 		try {
@@ -111,6 +113,8 @@ public class MainServlet extends HttpServlet {
 			functions.resetmark();
 		} catch (ClassNotFoundException | SQLException e) {	e.printStackTrace();}
 		
+		// ----------------------------------------------------
+		// save checked boxes
 		
 		// ----------------------------------------------------
 		
@@ -145,9 +149,8 @@ public class MainServlet extends HttpServlet {
 			// ----------------------------------------------------
 			
 			// DISPLAY
-			int num =20;
 			try {
-				pw.println(functions.display(num));
+				pw.println(functions.display(listlength));
 			} catch (SQLException e) {e.printStackTrace();}
 
 			// ----------------------------------------------------

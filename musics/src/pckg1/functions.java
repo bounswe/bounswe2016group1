@@ -43,9 +43,12 @@ public class functions {
 	public static String display(int num) throws SQLException {
 		String buff ="";
 		
+		buff += "<form method=\"post\" action =\"MainServlet\"> ";
+		
 		buff += "<table>";
 		buff += "<tr>";
 		
+		buff += "<td> ---------- </td>";
 		buff += "<td> f1editname </td>";
 		buff += "<td> f2editname </td>";
 		buff += "<td> f2editname </td>";
@@ -58,10 +61,13 @@ public class functions {
 		runner();
 		
 		while(MainServlet.result.next() && num > 0){
-			if(MainServlet.result.getInt("matchno") != 0){
+			if(MainServlet.result.getInt("matchno") == 0){
 				
 				buff += "<tr>";
 				
+				buff += "<td> "
+						+ "<input type=\"checkbox\" name=\"box" + (20-num+1) + "value=\"" + MainServlet.result.getString("id") + "\">"
+						+ "</td>";
 				buff += "<td> " + MainServlet.result.getString("f1") + " </td>";
 				buff += "<td> " + MainServlet.result.getString("f2") + " </td>";
 				buff += "<td> " + MainServlet.result.getString("f3") + " </td>";
@@ -73,11 +79,14 @@ public class functions {
 				break;
 			}
 		}
+		MainServlet.listlength = 20 - num;
 		
 
 		// ----------------------------------------------------
 		
 		buff += "</table>";
+		buff += "<input  type=\"submit\" value=\"Save selected results\">";
+		buff += "</form> ";
 		
 		return buff;
 	}
