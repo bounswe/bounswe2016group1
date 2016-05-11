@@ -134,7 +134,7 @@ public class MainServlet extends HttpServlet {
 		if(username != null){
 			try {
 				currentuser = username;
-				functions.insertuser(username);
+				pw.println(functions.insertuser(username));
 			} catch (SQLException e) {	e.printStackTrace();}
 		}
 		

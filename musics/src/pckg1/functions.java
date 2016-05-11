@@ -71,7 +71,7 @@ public class functions {
 				buff += "<tr>";
 				
 				buff += "<td> "
-						+ "<input type=\"checkbox\" name=\"box"+ (20-num+1) +"\" value=\"id" + MainServlet.result.getString("id") + "\">"
+						+ "<input type=\"checkbox\" name=\"box"+ (20-num+1) +"\" value=\"" + MainServlet.result.getString("id") + "\">"
 						+ "</td>";
 				buff += "<td> " + MainServlet.result.getString("f1") + " </td>";
 				buff += "<td> " + MainServlet.result.getString("f2") + " </td>";
@@ -118,7 +118,7 @@ public class functions {
 	
 	// ----------------------------------------------------
 	
-	public static void insertuser(String name) throws SQLException{
+	public static String insertuser(String name) throws SQLException{
 		MainServlet.query = "SELECT * FROM users WHERE name='"+name+"';";
 		runnerQuery();
 		
@@ -128,9 +128,9 @@ public class functions {
 					+ "('" + name + "');";
 			
 			runnerUpdate();
-
+			return "Welcome traveler.";
 		}else{
-			System.out.println("Welcome old friend.");
+			return "Welcome old friend.";
 		}
 
 	}
