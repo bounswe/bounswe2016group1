@@ -73,34 +73,8 @@ public class MainServlet extends HttpServlet {
 		pw.println("</html>");
 		
 		
-			try {
-				if( functions.connect()){
-					
-				
-					functions.select("*", "table1");
-					while(result.next()){
-						pw.println(result.getString(1)+" "+result.getString(2));
-					}
-					//functions.insertrecord(tablename, field1, field2);
-				}
-				
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		
-		
 	}
 
-	// -----------------------------------------------------------
-    // -----------------------------------------------------------
-    // -----------------------------------------------------------
-   
-	
-	
 	
 	
 	
@@ -123,12 +97,47 @@ public class MainServlet extends HttpServlet {
 		
 		pw.println("<form method=\"post\" action =\"MainServlet\" id= \"form1\" >");
 		
-		pw.println("<b>"+request.getParameter("keyword")+"</b>");
-		
+		pw.println("<b>Search Singles</b>");
+				
 		pw.println("<input  type=\"text\" name=\"keyword\" form = \"form1\"  >");
 		pw.println("<input  type=\"submit\" value=\"Search\">");
 		
 		pw.println("</form>");
+		
+		// ----------------------------------------------------
+		
+		try {
+			functions.connect();
+		} catch (ClassNotFoundException | SQLException e) {	e.printStackTrace();}
+		
+		// ----------------------------------------------------
+		
+		String keys = request.getParameter("keyword");
+		
+		if(!keys.equals("")){
+			int first = 0;
+			int last = 0;
+			int length = keys.length();
+			
+			for(int i = 0; i < length ; i++){
+				if( keys.charAt(i) == ' '){
+					last = i;
+					String key1 = keys.substring(first, last);
+					
+					if(!key1.equals("")){
+						pw.println(key1+" --");
+					}
+					first = last+1;
+				}
+			}
+			String key1 = keys.substring(first);
+			
+			if(!key1.equals("")){
+				pw.println(key1+"--");
+			}
+		}
+		
+		// ----------------------------------------------------
 	
 		pw.println("</body>");
 		pw.println("</html>");

@@ -5,11 +5,15 @@ import java.sql.SQLException;
 
 public class functions {
 	
-	public static boolean connect() throws ClassNotFoundException, SQLException{
+	public static void connect() throws ClassNotFoundException, SQLException{
 		Class.forName("com.mysql.jdbc.Driver");
 		MainServlet.conn = DriverManager.getConnection(MainServlet.url, MainServlet.user, MainServlet.pass);
 		
-		return true;
+	}
+	
+	public static void runner() throws SQLException{
+		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
+		MainServlet.result = MainServlet.statement.executeQuery();
 	}
 
 	public static void createtable(String tablename) throws SQLException{
