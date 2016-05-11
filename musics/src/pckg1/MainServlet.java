@@ -108,9 +108,9 @@ public class MainServlet extends HttpServlet {
 		
 		try {
 			functions.connect();
+			functions.resetmark();
 		} catch (ClassNotFoundException | SQLException e) {	e.printStackTrace();}
 		
-		functions.resetmark();
 		
 		// ----------------------------------------------------
 		

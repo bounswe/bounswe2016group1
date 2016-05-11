@@ -17,13 +17,13 @@ public class functions {
 	}
 
 	public static void marker(String keyword) {
-		
+		MainServlet.query = "";
 		
 	}
 	
-	public static void resetmark() {
-		// TODO Auto-generated method stub
-		
+	public static void resetmark() throws SQLException {
+		MainServlet.query = "";
+		runner();
 	}
 	
 	public static String display(int num) {
@@ -36,31 +36,28 @@ public class functions {
 	
 	
 	
-	public static void createtable(String tablename) throws SQLException{
+	public static void createtableforsaving(String tablename) throws SQLException{
 		MainServlet.query = "CREATE TABLE " + tablename
 				+ "("
 				+ "f1 varchar(255) , "
 				+ "f2 varchar(255)"
 				+ ");";
 		
-		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
-		MainServlet.result = MainServlet.statement.executeQuery();
+		runner();
 		
 	}
 	public static void deletetable(String tablename) throws SQLException{
 		MainServlet.query = "DROP TABLE " + tablename;
 		
-		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
-		MainServlet.result = MainServlet.statement.executeQuery();
+		runner();
 	}
 
-	public static void insertrecord(String tablename, String field1, String field2) throws SQLException{
+	public static void insertrecordforsaving(String tablename, String field1, String field2) throws SQLException{
 		MainServlet.query = "INSERT INTO " + tablename
 				+ " VALUES "
 				+ "(" + field1 + " , "+ field2 + ");";
 		
-		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
-		MainServlet.result = MainServlet.statement.executeQuery();
+		runner();
 	}
 	public static void deleterecord(String tablename,String fieldname,String recordvalue) throws SQLException{
 		MainServlet.query = "DELETE FROM " + tablename
@@ -70,30 +67,22 @@ public class functions {
 				+ recordvalue
 				+ ";";
 		
-		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
-		MainServlet.result = MainServlet.statement.executeQuery();
+		runner();
 	}
 	
 	public static void select(String fieldlist, String tablename) throws SQLException{
 		MainServlet.query = "SELECT " + fieldlist
 				+ " FROM " + tablename +  ";";
 		
-		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
-		MainServlet.result = MainServlet.statement.executeQuery();
+		runner();
 	}
 	public static void select(String fieldlist, String tablename, String condition) throws SQLException{
 		MainServlet.query = "SELECT " + fieldlist
 				+ " FROM " + tablename
 				+ " WHERE " + condition +  ";";
 		
-		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
-		MainServlet.result = MainServlet.statement.executeQuery();
+		runner();
 	}
 
-	
-
-	
-
-	
 	
 }
