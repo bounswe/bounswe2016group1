@@ -52,10 +52,10 @@ public class functions {
 		buff += "<table>";
 		buff += "<tr>";
 		
-		buff += "<td> ---------- </td>";
-		buff += "<td> f1editname </td>";
-		buff += "<td> f2editname </td>";
-		buff += "<td> f3editname </td>";
+		buff += "<td width=\"10%\"> ---- </td>";
+		buff += "<td width=\"30%\"> field1 </td>";
+		buff += "<td width=\"30%\"> field2 </td>";
+		buff += "<td width=\"30%\"> field3 </td>";
 
 		buff += "</tr>";
 
@@ -118,42 +118,37 @@ public class functions {
 	
 	// ----------------------------------------------------
 	
-	
-	
-	public static void createtableforsaving(String tablename) throws SQLException{
-		MainServlet.query = "CREATE TABLE " + tablename
-				+ "("
-				+ "f1 varchar(255) , "
-				+ "f2 varchar(255)"
-				+ ");";
+	public static void insertuser(String name) throws SQLException{
+		MainServlet.query = "SELECT * FROM users WHERE name='"+name+"';";
+		runnerQuery();
 		
-		runnerUpdate();
-		
-	}
-	public static void deletetable(String tablename) throws SQLException{
-		MainServlet.query = "DROP TABLE " + tablename;
-		
-		runnerUpdate();
+		if(!MainServlet.result.next()){
+			MainServlet.query = "INSERT INTO users "
+					+ " VALUES "
+					+ "('" + name + "');";
+			
+			runnerUpdate();
+
+		}else{
+			System.out.println("Welcome old friend.");
+		}
+
 	}
 
-	public static void insertrecordforsaving(String tablename, String field1, String field2) throws SQLException{
-		MainServlet.query = "INSERT INTO " + tablename
-				+ " VALUES "
-				+ "(" + field1 + " , "+ field2 + ");";
+	public static void insertrecordforsaving(String name, String id, String keyword) throws SQLException{
 		
-		runnerUpdate();
-	}
-	public static void deleterecord(String tablename,String fieldname,String recordvalue) throws SQLException{
-		MainServlet.query = "DELETE FROM " + tablename
-				+ " WHERE "
-				+ fieldname
-				+ "="
-				+ recordvalue
-				+ ";";
+		MainServlet.query = "SELECT * FROM saved WHERE name='"+name+"' and id='"+id+"' and keyword='"+keyword+"';";
+		runnerQuery();
 		
-		runnerUpdate();
+		if(!MainServlet.result.next()){
+			MainServlet.query = "INSERT INTO saved "
+					+ " VALUES "
+					+ "('" + name + "' , '"+ id + "' , '" + keyword +"');";
+			
+			runnerUpdate();
+
+		}
 	}
-	
-	
+
 	
 }

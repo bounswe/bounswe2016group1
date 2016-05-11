@@ -33,6 +33,8 @@ public class MainServlet extends HttpServlet {
 	
 	static int listlength = 0;
 	static String outputtable = "";
+	static String currentuser = "";
+	static String currentkeyword = "";
 	
 
     /**
@@ -51,6 +53,10 @@ public class MainServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		currentuser = "";
+		currentkeyword = "";
+		outputtable = "";
+		
 		response.setContentType("text/html");
 		
 		PrintWriter pw = response.getWriter();
@@ -64,10 +70,10 @@ public class MainServlet extends HttpServlet {
 		
 		pw.println("<form method=\"post\" action =\"MainServlet\"  >");
 		
-		pw.println("<b>Search Singles</b>");
+		pw.println("<b>Enter a user name</b>");
 		
-		pw.println("<input  type=\"text\" name=\"keyword\"   >");
-		pw.println("<input  type=\"submit\" value=\"Search\">");
+		pw.println("<input  type=\"text\" name=\"username\"   >");
+		pw.println("<input  type=\"submit\" value=\"Login\">");
 		
 		pw.println("</form>");
 	
@@ -97,6 +103,14 @@ public class MainServlet extends HttpServlet {
 		pw.println("</head>");
 		pw.println("<body>");
 		
+		// ----------------------------------------------------
+		pw.println("<form method=\"get\" action =\"MainServlet\" >");
+		
+		pw.println("<input  type=\"submit\" value=\"Go back to login\">");
+		
+		pw.println("</form>");
+		// ----------------------------------------------------
+		
 		pw.println("<form method=\"post\" action =\"MainServlet\" id= \"form1\" >");
 		
 		pw.println("<b>Search Singles</b>");
@@ -114,11 +128,24 @@ public class MainServlet extends HttpServlet {
 		} catch (ClassNotFoundException | SQLException e) {	e.printStackTrace();}
 		
 		// ----------------------------------------------------
+		// post after username
+		String username = request.getParameter("username");
+		
+		if(username != null){
+			try {
+				currentuser = username;
+				functions.insertuser(username);
+			} catch (SQLException e) {	e.printStackTrace();}
+		}
+		
+		// ----------------------------------------------------
 		// post after search
 		String keys = request.getParameter("keyword");
 		
 		if(keys != null){
 			if(!keys.equals("")){
+				currentkeyword = keys;
+				
 				int first = 0;
 				int last = 0;
 				int length = keys.length();
@@ -158,7 +185,9 @@ public class MainServlet extends HttpServlet {
 		for(int i = 0 ; i < listlength ; i++){
 			String id = request.getParameter("box"+(i+1));
 			if(id != null){
-				pw.println(id+"//"+listlength);
+				try {
+					functions.insertrecordforsaving(currentuser, id, currentkeyword);
+				} catch (SQLException e) {e.printStackTrace();}
 			}
 		}
 		
