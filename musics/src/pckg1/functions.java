@@ -44,11 +44,10 @@ public class functions {
 		}		
 	}
 	
-	
 	public static String display(int num) throws SQLException {
 		String buff ="";
 		
-		buff += "<form method=\"post\" action =\"SaveCheckedServlet\"> ";
+		buff += "<form method=\"post\" action =\"MainServlet\"> ";
 		
 		buff += "<table>";
 		buff += "<tr>";
@@ -72,7 +71,7 @@ public class functions {
 				buff += "<tr>";
 				
 				buff += "<td> "
-						+ "<input type=\"checkbox\" name=\"box\" value=\"mavera\">"
+						+ "<input type=\"checkbox\" name=\"box"+ (20-num+1) +"\" value=\"id" + MainServlet.result.getString("id") + "\">"
 						+ "</td>";
 				buff += "<td> " + MainServlet.result.getString("f1") + " </td>";
 				buff += "<td> " + MainServlet.result.getString("f2") + " </td>";

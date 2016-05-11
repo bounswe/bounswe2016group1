@@ -31,7 +31,7 @@ public class MainServlet extends HttpServlet {
 	static ResultSet result = null;
 	static PreparedStatement statement = null;
 	
-	static int listlength = 20;
+	static int listlength = 0;
 	static String outputtable = "";
 	
 
@@ -42,7 +42,6 @@ public class MainServlet extends HttpServlet {
         super();
     }
 
-    // -----------------------------------------------------------
     // -----------------------------------------------------------
     // -----------------------------------------------------------
      
@@ -115,48 +114,60 @@ public class MainServlet extends HttpServlet {
 		} catch (ClassNotFoundException | SQLException e) {	e.printStackTrace();}
 		
 		// ----------------------------------------------------
-		
+		// post after search
 		String keys = request.getParameter("keyword");
 		
-		if(!keys.equals("")){
-			int first = 0;
-			int last = 0;
-			int length = keys.length();
-			
-			for(int i = 0; i < length ; i++){
-				if( keys.charAt(i) == ' '){
-					last = i;
-					String key1 = keys.substring(first, last);
-					
-					if(!key1.equals("")){
-						try {
-							functions.marker(key1);
-						} catch (SQLException e) {e.printStackTrace();}
+		if(keys != null){
+			if(!keys.equals("")){
+				int first = 0;
+				int last = 0;
+				int length = keys.length();
+				
+				for(int i = 0; i < length ; i++){
+					if( keys.charAt(i) == ' '){
+						last = i;
+						String key1 = keys.substring(first, last);
+						
+						if(!key1.equals("")){
+							try {
+								functions.marker(key1);
+							} catch (SQLException e) {e.printStackTrace();}
+						}
+						first = last+1;
 					}
-					first = last+1;
 				}
-			}
-			String key1 = keys.substring(first);
-			
-			if(!key1.equals("")){
+				String key1 = keys.substring(first);
+				
+				if(!key1.equals("")){
+					try {
+						functions.marker(key1);
+					} catch (SQLException e) {e.printStackTrace();}
+				}
+				
+				// PREPARE DISPLAY CODE
 				try {
-					functions.marker(key1);
+					listlength = 20;
+					outputtable = functions.display(listlength);
 				} catch (SQLException e) {e.printStackTrace();}
 			}
-			
-			// ----------------------------------------------------
-			
-			// DISPLAY
-			try {
-				listlength = 20;
-				outputtable = functions.display(listlength);
-				pw.println(outputtable);
-			} catch (SQLException e) {e.printStackTrace();}
-
-			// ----------------------------------------------------
-		
 		}
 		
+		// ----------------------------------------------------
+		// post after checked boxes
+		
+		for(int i = 0 ; i < listlength ; i++){
+			String id = request.getParameter("box"+(i+1));
+			if(id != null){
+				pw.println(id+"//"+listlength);
+			}
+		}
+		
+		
+		// ----------------------------------------------------
+		
+		pw.println(outputtable);
+		
+		// ----------------------------------------------------
 		
 		pw.println("</body>");
 		pw.println("</html>");
