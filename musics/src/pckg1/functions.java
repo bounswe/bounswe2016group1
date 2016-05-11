@@ -81,6 +81,11 @@ public class functions {
 		
 		return buff;
 	}
+
+	
+	
+	// ----------------------------------------------------
+	
 	
 	public static void select(String fieldlist, String tablename) throws SQLException{
 		MainServlet.query = "SELECT " + fieldlist
@@ -97,6 +102,7 @@ public class functions {
 	}
 
 	
+	// ----------------------------------------------------
 	
 	
 	
