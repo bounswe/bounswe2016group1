@@ -146,7 +146,9 @@ public class MainServlet extends HttpServlet {
 			
 			// DISPLAY
 			int num =20;
-			pw.println(functions.display(num));
+			try {
+				pw.println(functions.display(num));
+			} catch (SQLException e) {e.printStackTrace();}
 
 			// ----------------------------------------------------
 		
