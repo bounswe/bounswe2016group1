@@ -114,9 +114,6 @@ public class MainServlet extends HttpServlet {
 		} catch (ClassNotFoundException | SQLException e) {	e.printStackTrace();}
 		
 		// ----------------------------------------------------
-		// save checked boxes
-		
-		// ----------------------------------------------------
 		
 		String keys = request.getParameter("keyword");
 		
@@ -150,6 +147,7 @@ public class MainServlet extends HttpServlet {
 			
 			// DISPLAY
 			try {
+				listlength = 20;
 				pw.println(functions.display(listlength));
 			} catch (SQLException e) {e.printStackTrace();}
 

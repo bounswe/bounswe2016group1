@@ -11,14 +11,19 @@ public class functions {
 		
 	}
 	
-	public static void runner() throws SQLException{
+	public static void runnerQuery() throws SQLException{
 		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
 		MainServlet.result = MainServlet.statement.executeQuery();
 	}
+	public static void runnerUpdate() throws SQLException{
+		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
+		MainServlet.statement.executeUpdate();
+	}
+
 
 	public static void resetmark() throws SQLException {
 		MainServlet.query = "UPDATE db SET matchno=0";
-		runner();
+		runnerUpdate();
 	}
 	
 	public static void marker(String keyword) throws SQLException {
@@ -26,15 +31,15 @@ public class functions {
 		while(MainServlet.result.next()){
 			if(MainServlet.result.getString("f1").contains(keyword)){
 				MainServlet.query = "UPDATE db SET matchno = matchno+1 WHERE id="+MainServlet.result.getString("id")+";";
-				runner();
+				runnerUpdate();
 			}
 			if(MainServlet.result.getString("f2").contains(keyword)){
 				MainServlet.query = "UPDATE db SET matchno = matchno+1 WHERE id="+MainServlet.result.getString("id")+";";
-				runner();
+				runnerUpdate();
 			}
 			if(MainServlet.result.getString("f3").contains(keyword)){
 				MainServlet.query = "UPDATE db SET matchno = matchno+1 WHERE id="+MainServlet.result.getString("id")+";";
-				runner();
+				runnerUpdate();
 			}
 		}		
 	}
@@ -57,11 +62,12 @@ public class functions {
 
 		// ----------------------------------------------------
 		
-		MainServlet.query = "SELECT * FROM db ORDER BY matchno;";
-		runner();
+		MainServlet.query = "SELECT * FROM db ORDER BY matchno DESC;";
+		runnerQuery();
 		
 		while(MainServlet.result.next() && num > 0){
-			if(MainServlet.result.getInt("matchno") == 0){
+
+			if(MainServlet.result.getInt("matchno") != 0){
 				
 				buff += "<tr>";
 				
@@ -100,14 +106,14 @@ public class functions {
 		MainServlet.query = "SELECT " + fieldlist
 				+ " FROM " + tablename +  ";";
 		
-		runner();
+		runnerQuery();
 	}
 	public static void select(String fieldlist, String tablename, String condition) throws SQLException{
 		MainServlet.query = "SELECT " + fieldlist
 				+ " FROM " + tablename
 				+ " WHERE " + condition +  ";";
 		
-		runner();
+		runnerQuery();
 	}
 
 	
@@ -122,13 +128,13 @@ public class functions {
 				+ "f2 varchar(255)"
 				+ ");";
 		
-		runner();
+		runnerUpdate();
 		
 	}
 	public static void deletetable(String tablename) throws SQLException{
 		MainServlet.query = "DROP TABLE " + tablename;
 		
-		runner();
+		runnerUpdate();
 	}
 
 	public static void insertrecordforsaving(String tablename, String field1, String field2) throws SQLException{
@@ -136,7 +142,7 @@ public class functions {
 				+ " VALUES "
 				+ "(" + field1 + " , "+ field2 + ");";
 		
-		runner();
+		runnerUpdate();
 	}
 	public static void deleterecord(String tablename,String fieldname,String recordvalue) throws SQLException{
 		MainServlet.query = "DELETE FROM " + tablename
@@ -146,7 +152,7 @@ public class functions {
 				+ recordvalue
 				+ ";";
 		
-		runner();
+		runnerUpdate();
 	}
 	
 	
