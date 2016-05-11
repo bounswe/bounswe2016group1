@@ -39,11 +39,6 @@ public class MainServlet extends HttpServlet {
         super();
     }
 
-    
-    
-    
-    
-    
     // -----------------------------------------------------------
     // -----------------------------------------------------------
     // -----------------------------------------------------------
@@ -65,11 +60,11 @@ public class MainServlet extends HttpServlet {
 		pw.println("</head>");
 		pw.println("<body>");
 		
-		pw.println("<form method=\"post\" action =\"MainServlet\" >");
+		pw.println("<form method=\"post\" action =\"MainServlet\"  >");
 		
 		pw.println("<b>Search Singles</b>");
 		
-		pw.println("<input  type=\"text\" name=\"keyword\" id=\"keyword\">");
+		pw.println("<input  type=\"text\" name=\"keyword\"   >");
 		pw.println("<input  type=\"submit\" value=\"Search\">");
 		
 		pw.println("</form>");
@@ -77,9 +72,11 @@ public class MainServlet extends HttpServlet {
 		pw.println("</body>");
 		pw.println("</html>");
 		
-	
+		
 			try {
 				if( functions.connect()){
+					
+				
 					functions.select("*", "table1");
 					while(result.next()){
 						pw.println(result.getString(1)+" "+result.getString(2));
@@ -112,8 +109,31 @@ public class MainServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		response.setContentType("text/html");
+		
+		PrintWriter pw = response.getWriter();
+		
+		pw.println("<!DOCTYPE html>");
+		pw.println("<html>");
+		pw.println("<head>");
+		pw.println("<title>Singles</title>");
+		pw.println("</head>");
+		pw.println("<body>");
+		
+		pw.println("<form method=\"post\" action =\"MainServlet\" id= \"form1\" >");
+		
+		pw.println("<b>"+request.getParameter("keyword")+"</b>");
+		
+		pw.println("<input  type=\"text\" name=\"keyword\" form = \"form1\"  >");
+		pw.println("<input  type=\"submit\" value=\"Search\">");
+		
+		pw.println("</form>");
+	
+		pw.println("</body>");
+		pw.println("</html>");
+		
+		
 	}
 
 }

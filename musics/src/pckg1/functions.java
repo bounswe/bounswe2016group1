@@ -32,7 +32,7 @@ public class functions {
 
 	public static void insertrecord(String tablename, String field1, String field2) throws SQLException{
 		MainServlet.query = "INSERT INTO " + tablename
-				+ "VALUES"
+				+ " VALUES "
 				+ "(" + field1 + " , "+ field2 + ");";
 		
 		MainServlet.statement = MainServlet.conn.prepareStatement(MainServlet.query);
@@ -40,7 +40,7 @@ public class functions {
 	}
 	public static void deleterecord(String tablename,String fieldname,String recordvalue) throws SQLException{
 		MainServlet.query = "DELETE FROM " + tablename
-				+ "WHERE "
+				+ " WHERE "
 				+ fieldname
 				+ "="
 				+ recordvalue
