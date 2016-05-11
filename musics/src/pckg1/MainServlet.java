@@ -32,6 +32,7 @@ public class MainServlet extends HttpServlet {
 	static PreparedStatement statement = null;
 	
 	static int listlength = 20;
+	static String outputtable = "";
 	
 
     /**
@@ -148,7 +149,8 @@ public class MainServlet extends HttpServlet {
 			// DISPLAY
 			try {
 				listlength = 20;
-				pw.println(functions.display(listlength));
+				outputtable = functions.display(listlength);
+				pw.println(outputtable);
 			} catch (SQLException e) {e.printStackTrace();}
 
 			// ----------------------------------------------------

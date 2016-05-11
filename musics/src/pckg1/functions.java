@@ -48,7 +48,7 @@ public class functions {
 	public static String display(int num) throws SQLException {
 		String buff ="";
 		
-		buff += "<form method=\"post\" action =\"MainServlet\"> ";
+		buff += "<form method=\"post\" action =\"SaveCheckedServlet\"> ";
 		
 		buff += "<table>";
 		buff += "<tr>";
@@ -56,7 +56,7 @@ public class functions {
 		buff += "<td> ---------- </td>";
 		buff += "<td> f1editname </td>";
 		buff += "<td> f2editname </td>";
-		buff += "<td> f2editname </td>";
+		buff += "<td> f3editname </td>";
 
 		buff += "</tr>";
 
@@ -72,7 +72,7 @@ public class functions {
 				buff += "<tr>";
 				
 				buff += "<td> "
-						+ "<input type=\"checkbox\" name=\"box" + (20-num+1) + "value=\"" + MainServlet.result.getString("id") + "\">"
+						+ "<input type=\"checkbox\" name=\"box\" value=\"mavera\">"
 						+ "</td>";
 				buff += "<td> " + MainServlet.result.getString("f1") + " </td>";
 				buff += "<td> " + MainServlet.result.getString("f2") + " </td>";
