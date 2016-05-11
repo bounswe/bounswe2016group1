@@ -17,12 +17,12 @@ public class functions {
 	}
 
 	public static void marker(String keyword) {
-		MainServlet.query = "";
+		MainServlet.query = "UPDATE db SET matchno=matchno+1 WHERE ----------------";
 		
 	}
 	
 	public static void resetmark() throws SQLException {
-		MainServlet.query = "";
+		MainServlet.query = "UPDATE db SET matchno=0";
 		runner();
 	}
 	
