@@ -96,9 +96,9 @@ public class functions {
 		buff += "<tr>";
 		
 		buff += "<td width=\"10%\"> ---- </td>";
-		buff += "<td width=\"30%\"> field1 </td>";
-		buff += "<td width=\"30%\"> field2 </td>";
-		buff += "<td width=\"30%\"> field3 </td>";
+		buff += "<td width=\"30%\"> Singer name </td>";
+		buff += "<td width=\"30%\"> Single name </td>";
+		buff += "<td width=\"30%\"> Year </td>";
 
 		buff += "</tr>";
 

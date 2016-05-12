@@ -163,9 +163,9 @@ public class MainServlet extends HttpServlet {
 				outputtable += "<table>";
 				outputtable += "<tr>";
 				
-				outputtable += "<td width=\"33%\"> field1 </td>";
-				outputtable += "<td width=\"33%\"> field2 </td>";
-				outputtable += "<td width=\"34%\"> field3 </td>";
+				outputtable += "<td width=\"33%\"> Singer name </td>";
+				outputtable += "<td width=\"33%\"> Single name </td>";
+				outputtable += "<td width=\"34%\"> Year </td>";
 
 				outputtable += "</tr>";
 				
