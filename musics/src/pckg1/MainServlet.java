@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  * Servlet implementation class MainServlet
+ * All project goes on around this class.
  */
 @WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {
@@ -39,6 +40,7 @@ public class MainServlet extends HttpServlet {
 
     /**
      * @see HttpServlet#HttpServlet()
+     * It is default for dynamic web project.
      */
     public MainServlet() {
         super();
@@ -49,6 +51,7 @@ public class MainServlet extends HttpServlet {
      
     
 	/**
+	 * doGet method handles the login page.
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -88,6 +91,11 @@ public class MainServlet extends HttpServlet {
 	
 	
 	/**
+	 * Main part of the project is here. Whenever a post action is required, program comes to this method.
+	 * Post actions are after login page, after search button, after show saved entries, after save selected entries.
+	 * And there is one get action for returning login page.
+	 * This method handles creating and running html code of the functions that are listed above.
+	 * And so this method is the main user interface of my project.
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

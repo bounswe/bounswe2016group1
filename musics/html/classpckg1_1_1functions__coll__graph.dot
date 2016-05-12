@@ -1,0 +1,6 @@
+digraph "pckg1.functions"
+{
+  edge [fontname="Helvetica",fontsize="10",labelfontname="Helvetica",labelfontsize="10"];
+  node [fontname="Helvetica",fontsize="10",shape=record];
+  Node1 [label="{pckg1.functions\n||+ connect()\l+ runnerQuery()\l+ runnerUpdate()\l+ resetmark()\l+ marker()\l+ display()\l+ select()\l+ select()\l+ insertuser()\l+ insertrecordforsaving()\l}",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
+}
