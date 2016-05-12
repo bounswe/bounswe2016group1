@@ -18,6 +18,9 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class MainServlet
  * All project goes on around this class.
+ * 
+ * @author sahin_batmaz
+ *
  */
 @WebServlet("/MainServlet")
 public class MainServlet extends HttpServlet {

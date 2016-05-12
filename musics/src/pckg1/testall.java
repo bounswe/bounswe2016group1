@@ -6,6 +6,11 @@ import java.sql.SQLException;
 
 import org.junit.Test;
 
+/**
+ * 
+ * @author sahin_batmaz
+ *
+ */
 public class testall {
 
 	/**
