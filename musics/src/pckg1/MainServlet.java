@@ -64,7 +64,7 @@ public class MainServlet extends HttpServlet {
 		pw.println("<!DOCTYPE html>");
 		pw.println("<html>");
 		pw.println("<head>");
-		pw.println("<title>Singles</title>");
+		pw.println("<title>Best-selling Digital Singles</title>");
 		pw.println("</head>");
 		pw.println("<body>");
 		
@@ -120,7 +120,7 @@ public class MainServlet extends HttpServlet {
 		
 		pw.println("<form method=\"post\" action =\"MainServlet\" id= \"form1\" >");
 		
-		pw.println("<b>Search Singles</b>");
+		pw.println("<b>Search Best-selling Digital Singles</b>");
 				
 		pw.println("<input  type=\"text\" name=\"keyword\" value=\"You can enter singer name, single name, year\" style=\"width:600px\" form = \"form1\"  >");
 		pw.println("<input  type=\"submit\" value=\"Search\">");
