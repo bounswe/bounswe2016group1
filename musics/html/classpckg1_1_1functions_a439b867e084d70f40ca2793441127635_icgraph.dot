@@ -6,4 +6,8 @@ digraph "pckg1.functions.resetmark"
   Node1 [label="pckg1.functions.resetmark",height=0.2,width=0.4,color="black", fillcolor="grey75", style="filled", fontcolor="black"];
   Node1 -> Node2 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
   Node2 [label="pckg1.MainServlet.doPost",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpckg1_1_1_main_servlet.html#a1d28b6a30c1e6beebe25c7853ca6e8fe"];
+  Node1 -> Node3 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node3 [label="pckg1.testall.resetmarkertest",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpckg1_1_1testall.html#a4d61486b76d24858afca8ab389c455d3"];
+  Node1 -> Node4 [dir="back",color="midnightblue",fontsize="10",style="solid",fontname="Helvetica"];
+  Node4 [label="pckg1.testall.markertest",height=0.2,width=0.4,color="black", fillcolor="white", style="filled",URL="$classpckg1_1_1testall.html#a9394d541380e2e8761becd3eba457d98"];
 }

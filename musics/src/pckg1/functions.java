@@ -153,7 +153,7 @@ public class functions {
 	 */
 	public static void select(String fieldlist, String tablename) throws SQLException{
 		MainServlet.query = "SELECT " + fieldlist
-				+ " FROM " + tablename +  ";";
+				+ " FROM " + tablename;
 		
 		runnerQuery();
 	}
@@ -169,7 +169,7 @@ public class functions {
 	public static void select(String fieldlist, String tablename, String condition) throws SQLException{
 		MainServlet.query = "SELECT " + fieldlist
 				+ " FROM " + tablename
-				+ " WHERE " + condition +  ";";
+				+ " WHERE " + condition;
 		
 		runnerQuery();
 	}
