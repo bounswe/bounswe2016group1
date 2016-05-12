@@ -122,7 +122,7 @@ public class MainServlet extends HttpServlet {
 		
 		pw.println("<b>Search Singles</b>");
 				
-		pw.println("<input  type=\"text\" name=\"keyword\" form = \"form1\"  >");
+		pw.println("<input  type=\"text\" name=\"keyword\" value=\"You can enter singer name, single name, year\" style=\"width:600px\" form = \"form1\"  >");
 		pw.println("<input  type=\"submit\" value=\"Search\">");
 		
 		pw.println("</form>");
