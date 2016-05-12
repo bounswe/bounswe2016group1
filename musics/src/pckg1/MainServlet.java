@@ -28,7 +28,7 @@ public class MainServlet extends HttpServlet {
 	
 	static final String user = "root";
 	static final String pass = "12345678";
-	static final String url = "jdbc:mysql://localhost:3306/test.db";
+	static final String url = "jdbc:mysql://localhost:3306/test";
 
 	static Connection conn = null;
 	static String query = null;
