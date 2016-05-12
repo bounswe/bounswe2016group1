@@ -29,15 +29,15 @@ public class functions {
 	public static void marker(String keyword) throws SQLException {
 		select("*","db");
 		while(MainServlet.result.next()){
-			if(MainServlet.result.getString("f1").contains(keyword)){
+			if(MainServlet.result.getString("f1").toLowerCase().contains(keyword.toLowerCase())){
 				MainServlet.query = "UPDATE db SET matchno = matchno+1 WHERE id="+MainServlet.result.getString("id")+";";
 				runnerUpdate();
 			}
-			if(MainServlet.result.getString("f2").contains(keyword)){
+			if(MainServlet.result.getString("f2").toLowerCase().contains(keyword.toLowerCase())){
 				MainServlet.query = "UPDATE db SET matchno = matchno+1 WHERE id="+MainServlet.result.getString("id")+";";
 				runnerUpdate();
 			}
-			if(MainServlet.result.getString("f3").contains(keyword)){
+			if(MainServlet.result.getString("f3").toLowerCase().contains(keyword.toLowerCase())){
 				MainServlet.query = "UPDATE db SET matchno = matchno+1 WHERE id="+MainServlet.result.getString("id")+";";
 				runnerUpdate();
 			}
