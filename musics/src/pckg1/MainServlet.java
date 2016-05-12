@@ -196,6 +196,7 @@ public class MainServlet extends HttpServlet {
 		}
 
 
+		
 		// ----------------------------------------------------
 		// post after search
 		String keys = request.getParameter("keyword");
