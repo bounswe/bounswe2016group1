@@ -111,6 +111,13 @@ public class MainServlet extends HttpServlet {
 		pw.println("</form>");
 		// ----------------------------------------------------
 		
+		pw.println("<form method=\"post\" action =\"MainServlet\" >");
+		
+		pw.println("<input  type=\"submit\" name=\"savedresults\" value=\"Show all saved results.\">");
+		
+		pw.println("</form>");
+		// ----------------------------------------------------
+		
 		pw.println("<form method=\"post\" action =\"MainServlet\" id= \"form1\" >");
 		
 		pw.println("<b>Search Singles</b>");
@@ -137,7 +144,41 @@ public class MainServlet extends HttpServlet {
 				pw.println(functions.insertuser(username));
 			} catch (SQLException e) {	e.printStackTrace();}
 		}
-		
+
+		// ----------------------------------------------------
+		// post after savedresults
+		String savedresults = request.getParameter("savedresults");
+
+		if(savedresults != null){
+			try {
+				outputtable = "";
+				outputtable += "<table>";
+				outputtable += "<tr>";
+				
+				outputtable += "<td width=\"33%\"> field1 </td>";
+				outputtable += "<td width=\"33%\"> field2 </td>";
+				outputtable += "<td width=\"34%\"> field3 </td>";
+
+				outputtable += "</tr>";
+				
+				query = "SELECT * FROM db WHERE id IN (SELECT id FROM saved WHERE name='"+currentuser+"');";
+				functions.runnerQuery();
+				
+				while(result.next()){
+					outputtable += "<tr>";
+					
+					outputtable += "<td> " + result.getString("f1") + " </td>";
+					outputtable += "<td> " + result.getString("f2") + " </td>";
+					outputtable += "<td> " + result.getString("f3") + " </td>";
+
+					outputtable += "</tr>";
+				}
+				outputtable += "</table>";
+
+			} catch (SQLException e) {	e.printStackTrace();}
+		}
+
+
 		// ----------------------------------------------------
 		// post after search
 		String keys = request.getParameter("keyword");
