@@ -108,6 +108,15 @@ public class MainServlet extends HttpServlet {
 		pw.println("<html>");
 		pw.println("<head>");
 		pw.println("<title>Singles</title>");
+		
+		pw.println("<style>");
+		pw.println("table, td {");
+		pw.println("border: 1px solid black;");
+		pw.println("border-collapse: collapse;");
+		pw.println("}");
+		pw.println("</style>");
+		
+		
 		pw.println("</head>");
 		pw.println("<body>");
 		
